@@ -1,117 +1,98 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wilco Welding | Welding Training</title>
-  <meta name="description" content="Wilco Welding prepares students for entry level careers.">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wilco Welding</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="nav-wrap">
-    <a class="brand" href="#home" aria-label="Wilco Welding home">
-      <img src="assets/logo.png" alt="Wilco Welding">
-    </a>
-    <button class="menu-toggle" aria-label="Open navigation">☰</button>
-    <nav class="nav">
+<header class="header">
+  <div class="header-inner">
+    <a class="logo"><img src="assets/logo.png" alt="Wilco Welding"></a>
+    <button class="hamburger">☰</button>
+    <nav>
       <a class="active" href="#home">HOME</a>
       <a href="#program">ABOUT THE PROGRAM</a>
       <a href="#program">WELDING PROGRAM</a>
       <a href="#resources">STUDENT RESOURCES</a>
-      <a href="#employers">CAREERS & EMPLOYERS</a>
+      <a href="#partners">CAREERS & EMPLOYERS</a>
       <a href="#news">BLOG</a>
       <a href="#contact">CONTACT</a>
     </nav>
   </div>
 </header>
 
-<main id="home">
-  <section class="hero">
-    <div class="hero-image"></div>
-    <div class="hero-overlay"></div>
-    <button class="hero-arrow left" aria-label="Previous slide">‹</button>
-    <div class="hero-copy">
-      <p class="eyebrow" data-content="hero.eyebrow"></p>
-      <h1 data-content="hero.title"></h1>
-      <p data-content="hero.description"></p>
-      <a class="button" href="#news" data-content="hero.button"></a>
-      <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+<section class="hero" id="home">
+  <div class="hero-photo"></div><div class="hero-shade"></div>
+  <button class="arrow left">‹</button><button class="arrow right">›</button>
+  <div class="hero-text">
+    <div class="yellow" data-c="hero.eyebrow"></div>
+    <h1 data-c="hero.title"></h1>
+    <p data-c="hero.description"></p>
+    <a class="yellow-button" href="#news" data-c="hero.button"></a>
+    <div class="slider-dots"><i class="on"></i><i></i><i></i></div>
+  </div>
+</section>
+
+<section class="program" id="program">
+  <div class="program-image"><img src="assets/program-lab.webp" alt="Wilco Welding"></div>
+  <div class="program-main">
+    <h2 data-c="program.title"></h2>
+    <div class="underline"></div>
+    <p class="program-desc" data-c="program.description"></p>
+    <div class="features" id="features"></div>
+    <a class="yellow-button program-button" href="#contact" data-c="program.button"></a>
+  </div>
+</section>
+
+<section class="lower" id="resources">
+  <div class="panel" id="news">
+    <h2>LATEST NEWS</h2><div class="underline"></div><div id="newsRows"></div>
+    <a class="gold-link">VIEW ALL NEWS →</a>
+  </div>
+  <div class="panel events">
+    <h2>UPCOMING EVENTS</h2><div class="underline"></div><div id="eventRows"></div>
+    <a class="gold-link">VIEW ALL EVENTS →</a>
+  </div>
+  <div class="panel partners" id="partners">
+    <h2>OUR INDUSTRY PARTNERS & EMPLOYERS</h2><div class="underline"></div>
+    <div class="partner-logos">
+      <div class="partner-logo"><img src="assets/partner-aws.webp" alt="American Welding Society"></div>
+      <div class="partner-logo"><img src="assets/partner-597.png" alt="Chicago Pipefitters Local 597"></div>
+      <div class="partner-logo"><img src="assets/partner-dump-it.png" alt="Dump It Junk Removal Service LLC."></div>
+      <div class="partner-logo"><img src="assets/partner-bulldog.png" alt="Bulldog Derby Parts"></div>
+      <div class="partner-logo"><img src="assets/partner-metropolitan.png" alt="Metropolitan Industries, Inc."></div>
+      <div class="partner-logo"><img src="assets/partner-444.png" alt="Iron Workers Local 444"></div>
     </div>
-    <button class="hero-arrow right" aria-label="Next slide">›</button>
-  </section>
+    <a class="gold-link">VIEW CAREERS & EMPLOYERS →</a>
+  </div>
+</section>
 
-  <section class="program-section" id="program">
-    <div class="program-photo">
-      <img src="assets/program-photo.jpg" alt="Wilco Welding student welding">
+<footer id="contact">
+  <div class="footer-main">
+    <div class="foot brand-foot">
+      <img src="assets/logo.png" alt="Wilco Welding">
+      <p data-c="footer.tagline"></p>
+      <div class="social">●　◎　✉</div>
     </div>
-    <div class="program-content">
-      <p class="section-kicker">WELDING PROGRAM</p>
-      <h2>WELDING PROGRAM</h2>
-      <p class="intro" data-content="program.intro"></p>
-      <div class="feature-grid" id="feature-grid"></div>
-      <a class="button" href="#contact" data-content="program.button"></a>
-    </div>
-  </section>
-
-  <section class="cards-section" id="news">
-    <article class="card">
-      <p class="section-kicker">LATEST NEWS</p>
-      <h2>LATEST NEWS</h2>
-      <div id="news-list"></div>
-      <a class="text-link" href="#news">VIEW ALL NEWS →</a>
-    </article>
-
-    <article class="card" id="resources">
-      <p class="section-kicker">UPCOMING EVENTS</p>
-      <h2>UPCOMING EVENTS</h2>
-      <div id="events-list"></div>
-      <a class="text-link" href="#resources">VIEW ALL EVENTS →</a>
-    </article>
-
-    <article class="card partners" id="employers">
-      <p class="section-kicker">OUR INDUSTRY PARTNERS & EMPLOYERS</p>
-      <h2>OUR INDUSTRY PARTNERS & EMPLOYERS</h2>
-      <div class="partner-grid" id="partner-grid"></div>
-      <a class="text-link" href="#employers">VIEW CAREERS & EMPLOYERS →</a>
-    </article>
-  </section>
-</main>
-
-<footer class="footer" id="contact">
-  <div class="footer-grid">
-    <div>
-      <img class="footer-logo" src="assets/logo.png" alt="Wilco Welding">
-      <p data-content="footer.tagline"></p>
-      <div class="socials"><span>f</span><span>◎</span><span>✉</span></div>
-    </div>
-    <div>
+    <div class="foot">
       <h3>QUICK LINKS</h3>
-      <a href="#program">About the Program</a>
-      <a href="#program">Welding Program</a>
-      <a href="#resources">Student Resources</a>
-      <a href="#employers">Careers & Employers</a>
-      <a href="#news">Blog</a>
-      <a href="#contact">Contact</a>
+      <a>About the Program</a><a>Welding Program</a><a>Student Resources</a><a>Careers & Employers</a><a>Blog</a><a>Contact</a>
     </div>
-    <div>
+    <div class="foot">
       <h3>RESOURCES</h3>
-      <a href="#resources">Syllabus & Documents</a>
-      <a href="#resources">Supply Lists</a>
-      <a href="#resources">Safety & PPE</a>
-      <a href="#news">News & Announcements</a>
-      <a href="#resources">Parent Information</a>
+      <a>Syllabus & Documents</a><a>Supply Lists</a><a>Safety & PPE</a><a>News & Announcements</a><a>Parent Information</a>
     </div>
-    <div>
+    <div class="foot">
       <h3>CONTACT US</h3>
-      <p class="contact-line">📍 <span data-content="footer.address"></span></p>
-      <p class="contact-line">☎ <span data-content="footer.phone"></span></p>
-      <p class="contact-line">✉ <span data-content="footer.email"></span></p>
+      <p>⌖　<span data-c="footer.address"></span></p>
+      <p>☎　<span data-c="footer.phone"></span></p>
+      <p>✉　<span data-c="footer.email"></span></p>
     </div>
   </div>
-  <div class="copyright" data-content="footer.copyright"></div>
+  <div class="copyright" data-c="footer.copyright"></div>
 </footer>
-
 <script src="script.js"></script>
 </body>
 </html>

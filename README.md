@@ -1,19 +1,19 @@
-# Wilco Welding Homepage Copy
+# Wilco Welding Homepage Copy v3
 
-This is the first build of the Wilco Welding homepage based on the supplied homepage screenshot and the current public Wilco Welding homepage.
+This version keeps the v2 layout but replaces approximated imagery with the exact assets supplied by Wilco Welding in the latest upload:
+- Chicago Pipefitters Local 597
+- Dump It Junk Removal Service LLC.
+- Bulldog Derby Parts
+- Metropolitan Industries, Inc.
+- Iron Workers Local 444
+- American Welding Society (AWS)
+- Wilco Welding lab photo
 
-## Files
-- `index.html` — homepage layout
-- `styles.css` — visual styling
-- `script.js` — loads editable content
-- `content.json` — the content you can change later
-- `assets/` — image assets cropped from the supplied homepage screenshot
+The original homepage screenshot remains the master visual reference.
 
-## First editing test
-Open `content.json` and change a headline, news item, event, or contact detail. The homepage reads those values from the file.
+Still needed for a fully 1:1 recreation:
+- Any additional partner/company logos that appear in the original screenshot but were not supplied here
+- The original hero image, if you want that exact photo rather than the cropped screenshot image
+- Any original icon files/fonts if available
 
-## Next build stage
-The next stage can replace `content.json` with a CMS/database so staff can edit the same fields from an admin dashboard without touching code.
-
-## Deployment
-This structure can be deployed to Vercel as a static site now, then connected to a CMS later.
+`content.json` remains separate from the page so the next step can replace it with a CMS/admin dashboard.

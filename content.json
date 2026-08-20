@@ -7,8 +7,8 @@
   },
   "program": {
     "title": "WELDING PROGRAM",
-    "intro": "Our Welding Program prepares students with the skills, knowledge, and hands-on experience needed for successful careers in the welding industry.",
-    "items": [
+    "description": "Our Welding Program prepares students with the skills, knowledge, and hands-on experience needed for successful careers in the welding industry.",
+    "features": [
       [
         "HANDS-ON TRAINING",
         "Real-world projects and shop experience from day one."
@@ -59,15 +59,6 @@
       "Last Day of Classes",
       "May 31, 2024"
     ]
-  ],
-  "partners": [
-    "American Welding Society",
-    "Constellation",
-    "Metropolitan Industries, Inc.",
-    "Dump It Junk Removal Service LLC.",
-    "Bulldog Derby Parts",
-    "Chicago Pipefitters Local 597",
-    "Boilermakers Local 1"
   ],
   "footer": {
     "tagline": "High quality welding education. Real world skills. Real world careers.",
