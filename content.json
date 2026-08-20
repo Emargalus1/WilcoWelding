@@ -1,10 +1,10 @@
-{
-  "hero": {
-    "eyebrow": "LATEST BLOG POST",
-    "title": "NEW PROJECT COMPLETED",
-    "description": "Check out one of our Welding Program student projects completed this week! Great work by our students and instructors.",
-    "button": "READ THE FULL POST \u2192"
-  },
+"hero": {
+  "eyebrow": "LATEST BLOG POST",
+  "title": "NEW PROJECT COMPLETED",
+  "description": "...",
+  "button": "READ THE FULL POST →",
+  "image": "hero-welding.jpg"
+}
   "program": {
     "title": "WELDING PROGRAM",
     "description": "Our Welding Program prepares students with the skills, knowledge, and hands-on experience needed for successful careers in the welding industry.",
