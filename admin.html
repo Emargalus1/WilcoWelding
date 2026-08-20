@@ -123,7 +123,7 @@
 
 async function loadContent() {
 
-  const response = await fetch('content.json');
+ const response = await fetch('./content.json');
   const content = await response.json();
 
   document.getElementById('eyebrow').value =
