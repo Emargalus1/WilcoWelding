@@ -1,0 +1,79 @@
+{
+  "hero": {
+    "eyebrow": "LATEST BLOG POST",
+    "title": "NEW PROJECT COMPLETED",
+    "description": "Check out one of our Welding Program student projects completed this week! Great work by our students and instructors.",
+    "button": "READ THE FULL POST \u2192"
+  },
+  "program": {
+    "title": "WELDING PROGRAM",
+    "intro": "Our Welding Program prepares students with the skills, knowledge, and hands-on experience needed for successful careers in the welding industry.",
+    "items": [
+      [
+        "HANDS-ON TRAINING",
+        "Real-world projects and shop experience from day one."
+      ],
+      [
+        "INDUSTRY-RECOGNIZED SKILLS",
+        "Students learn SMAW, GMAW, GTAW, plasma cutting, and more."
+      ],
+      [
+        "MODERN EQUIPMENT",
+        "Training with industry-standard equipment and tools."
+      ],
+      [
+        "SAFETY FOCUSED",
+        "Safety is our top priority in every class, every day."
+      ],
+      [
+        "CAREER READY",
+        "We prepare students for high-demand careers in welding and manufacturing."
+      ]
+    ],
+    "button": "LEARN MORE ABOUT THE PROGRAM \u2192"
+  },
+  "news": [
+    [
+      "End of Year Newsletter",
+      "May 10, 2024"
+    ],
+    [
+      "Safety Reminder",
+      "April 28, 2024"
+    ],
+    [
+      "Student Project Highlight",
+      "April 15, 2024"
+    ]
+  ],
+  "events": [
+    [
+      "Safety Inspection Week",
+      "May 20 - May 24, 2024"
+    ],
+    [
+      "Skills Competition",
+      "June 7, 2024"
+    ],
+    [
+      "Last Day of Classes",
+      "May 31, 2024"
+    ]
+  ],
+  "partners": [
+    "American Welding Society",
+    "Constellation",
+    "Metropolitan Industries, Inc.",
+    "Dump It Junk Removal Service LLC.",
+    "Bulldog Derby Parts",
+    "Chicago Pipefitters Local 597",
+    "Boilermakers Local 1"
+  ],
+  "footer": {
+    "tagline": "High quality welding education. Real world skills. Real world careers.",
+    "address": "500 Wilco Drive\nRomeoville, IL 60446",
+    "phone": "815-838-6941",
+    "email": "Welding@wilcoacc.org",
+    "copyright": "\u00a9 2024 Wilco Welding Program. All Rights Reserved."
+  }
+}

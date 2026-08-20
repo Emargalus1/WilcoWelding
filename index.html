@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wilco Welding | Welding Training</title>
+  <meta name="description" content="Wilco Welding prepares students for entry level careers.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="#home" aria-label="Wilco Welding home">
+      <img src="assets/logo.png" alt="Wilco Welding">
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation">☰</button>
+    <nav class="nav">
+      <a class="active" href="#home">HOME</a>
+      <a href="#program">ABOUT THE PROGRAM</a>
+      <a href="#program">WELDING PROGRAM</a>
+      <a href="#resources">STUDENT RESOURCES</a>
+      <a href="#employers">CAREERS & EMPLOYERS</a>
+      <a href="#news">BLOG</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="hero-image"></div>
+    <div class="hero-overlay"></div>
+    <button class="hero-arrow left" aria-label="Previous slide">‹</button>
+    <div class="hero-copy">
+      <p class="eyebrow" data-content="hero.eyebrow"></p>
+      <h1 data-content="hero.title"></h1>
+      <p data-content="hero.description"></p>
+      <a class="button" href="#news" data-content="hero.button"></a>
+      <div class="dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+    </div>
+    <button class="hero-arrow right" aria-label="Next slide">›</button>
+  </section>
+
+  <section class="program-section" id="program">
+    <div class="program-photo">
+      <img src="assets/program-photo.jpg" alt="Wilco Welding student welding">
+    </div>
+    <div class="program-content">
+      <p class="section-kicker">WELDING PROGRAM</p>
+      <h2>WELDING PROGRAM</h2>
+      <p class="intro" data-content="program.intro"></p>
+      <div class="feature-grid" id="feature-grid"></div>
+      <a class="button" href="#contact" data-content="program.button"></a>
+    </div>
+  </section>
+
+  <section class="cards-section" id="news">
+    <article class="card">
+      <p class="section-kicker">LATEST NEWS</p>
+      <h2>LATEST NEWS</h2>
+      <div id="news-list"></div>
+      <a class="text-link" href="#news">VIEW ALL NEWS →</a>
+    </article>
+
+    <article class="card" id="resources">
+      <p class="section-kicker">UPCOMING EVENTS</p>
+      <h2>UPCOMING EVENTS</h2>
+      <div id="events-list"></div>
+      <a class="text-link" href="#resources">VIEW ALL EVENTS →</a>
+    </article>
+
+    <article class="card partners" id="employers">
+      <p class="section-kicker">OUR INDUSTRY PARTNERS & EMPLOYERS</p>
+      <h2>OUR INDUSTRY PARTNERS & EMPLOYERS</h2>
+      <div class="partner-grid" id="partner-grid"></div>
+      <a class="text-link" href="#employers">VIEW CAREERS & EMPLOYERS →</a>
+    </article>
+  </section>
+</main>
+
+<footer class="footer" id="contact">
+  <div class="footer-grid">
+    <div>
+      <img class="footer-logo" src="assets/logo.png" alt="Wilco Welding">
+      <p data-content="footer.tagline"></p>
+      <div class="socials"><span>f</span><span>◎</span><span>✉</span></div>
+    </div>
+    <div>
+      <h3>QUICK LINKS</h3>
+      <a href="#program">About the Program</a>
+      <a href="#program">Welding Program</a>
+      <a href="#resources">Student Resources</a>
+      <a href="#employers">Careers & Employers</a>
+      <a href="#news">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div>
+      <h3>RESOURCES</h3>
+      <a href="#resources">Syllabus & Documents</a>
+      <a href="#resources">Supply Lists</a>
+      <a href="#resources">Safety & PPE</a>
+      <a href="#news">News & Announcements</a>
+      <a href="#resources">Parent Information</a>
+    </div>
+    <div>
+      <h3>CONTACT US</h3>
+      <p class="contact-line">📍 <span data-content="footer.address"></span></p>
+      <p class="contact-line">☎ <span data-content="footer.phone"></span></p>
+      <p class="contact-line">✉ <span data-content="footer.email"></span></p>
+    </div>
+  </div>
+  <div class="copyright" data-content="footer.copyright"></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
