@@ -3,9 +3,9 @@
   "title": "NEW PROJECT COMPLETED",
   "description": "...",
   "button": "READ THE FULL POST →",
-  "image": "hero-welding.jpg"
-}
-  "program": {
+    "image": "hero-welding.jpg"
+},
+"program": {
     "title": "WELDING PROGRAM",
     "description": "Our Welding Program prepares students with the skills, knowledge, and hands-on experience needed for successful careers in the welding industry.",
     "features": [
