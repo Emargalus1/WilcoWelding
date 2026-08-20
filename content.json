@@ -1,11 +1,12 @@
-"hero": {
-  "eyebrow": "LATEST BLOG POST",
-  "title": "NEW PROJECT COMPLETED",
-  "description": "...",
-  "button": "READ THE FULL POST →",
+{
+  "hero": {
+    "eyebrow": "LATEST BLOG POST",
+    "title": "NEW PROJECT COMPLETED",
+    "description": "...",
+    "button": "READ THE FULL POST →",
     "image": "hero-welding.jpg"
-},
-"program": {
+  },
+  "program": {
     "title": "WELDING PROGRAM",
     "description": "Our Welding Program prepares students with the skills, knowledge, and hands-on experience needed for successful careers in the welding industry.",
     "features": [
@@ -30,41 +31,23 @@
         "We prepare students for high-demand careers in welding and manufacturing."
       ]
     ],
-    "button": "LEARN MORE ABOUT THE PROGRAM \u2192"
+    "button": "LEARN MORE ABOUT THE PROGRAM →"
   },
   "news": [
-    [
-      "End of Year Newsletter",
-      "May 10, 2024"
-    ],
-    [
-      "Safety Reminder",
-      "April 28, 2024"
-    ],
-    [
-      "Student Project Highlight",
-      "April 15, 2024"
-    ]
+    ["End of Year Newsletter", "May 10, 2024"],
+    ["Safety Reminder", "April 28, 2024"],
+    ["Student Project Highlight", "April 15, 2024"]
   ],
   "events": [
-    [
-      "Safety Inspection Week",
-      "May 20 - May 24, 2024"
-    ],
-    [
-      "Skills Competition",
-      "June 7, 2024"
-    ],
-    [
-      "Last Day of Classes",
-      "May 31, 2024"
-    ]
+    ["Safety Inspection Week", "May 20 - May 24, 2024"],
+    ["Skills Competition", "June 7, 2024"],
+    ["Last Day of Classes", "May 31, 2024"]
   ],
   "footer": {
     "tagline": "High quality welding education. Real world skills. Real world careers.",
     "address": "500 Wilco Drive\nRomeoville, IL 60446",
     "phone": "815-838-6941",
     "email": "Welding@wilcoacc.org",
-    "copyright": "\u00a9 2024 Wilco Welding Program. All Rights Reserved."
+    "copyright": "© 2024 Wilco Welding Program. All Rights Reserved."
   }
 }
