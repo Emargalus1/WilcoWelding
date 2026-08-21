@@ -1,6 +1,6 @@
 {
   "hero": {
-    "eyebrow": "LATEST BLOG POST",
+    "eyebrow": "LATEST BLOG POST test",
     "title": "NEW PROJECT COMPLETED",
     "description": "...",
     "button": "READ THE FULL POST →",
@@ -34,14 +34,32 @@
     "button": "LEARN MORE ABOUT THE PROGRAM →"
   },
   "news": [
-    ["End of Year Newsletter", "May 10, 2024"],
-    ["Safety Reminder", "April 28, 2024"],
-    ["Student Project Highlight", "April 15, 2024"]
+    [
+      "End of Year Newsletter",
+      "May 10, 2024"
+    ],
+    [
+      "Safety Reminder",
+      "April 28, 2024"
+    ],
+    [
+      "Student Project Highlight",
+      "April 15, 2024"
+    ]
   ],
   "events": [
-    ["Safety Inspection Week", "May 20 - May 24, 2024"],
-    ["Skills Competition", "June 7, 2024"],
-    ["Last Day of Classes", "May 31, 2024"]
+    [
+      "Safety Inspection Week",
+      "May 20 - May 24, 2024"
+    ],
+    [
+      "Skills Competition",
+      "June 7, 2024"
+    ],
+    [
+      "Last Day of Classes",
+      "May 31, 2024"
+    ]
   ],
   "footer": {
     "tagline": "High quality welding education. Real world skills. Real world careers.",
