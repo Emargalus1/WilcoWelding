@@ -123,26 +123,36 @@
 <script>
 
 async function loadContent() {
+    try {
+        const response = await fetch('./content.json');
 
- const response = await fetch('./content.json');
-  const content = await response.json();
+        if (!response.ok) {
+            throw new Error('Could not load content.json');
+        }
 
-  document.getElementById('eyebrow').value =
-    content.hero.eyebrow || '';
+        const content = await response.json();
 
-  document.getElementById('title').value =
-    content.hero.title || '';
+        const blog = content.blog || {};
 
-  document.getElementById('description').value =
-    content.hero.description || '';
+        document.getElementById('eyebrow').value =
+            blog.eyebrow || '';
 
-  document.getElementById('button').value =
-    content.hero.button || '';
+        document.getElementById('title').value =
+            blog.title || '';
 
-  document.getElementById('image').value =
-    content.hero.image || '';
+        document.getElementById('description').value =
+            blog.description || '';
+
+        document.getElementById('button').value =
+            blog.button || '';
+
+        document.getElementById('image').value =
+            blog.image || '';
+
+    } catch (error) {
+        console.error('Error loading blog content:', error);
+    }
 }
-
 async function saveBlog() {
 
   const button = document.getElementById("saveButton");
