@@ -142,11 +142,54 @@ async function loadContent() {
     content.hero.image || '';
 }
 
-function saveBlog() {
+async function saveBlog() {
 
-  alert(
-    "The editor is working, but automatic saving to GitHub will be connected in the next step."
-  );
+  const button = document.getElementById("saveButton");
+  const status = document.getElementById("status");
+
+  button.disabled = true;
+  status.textContent = "Saving...";
+
+  const hero = {
+    eyebrow: document.getElementById("eyebrow").value,
+    title: document.getElementById("title").value,
+    description: document.getElementById("description").value,
+    button: document.getElementById("button").value,
+    image: document.getElementById("image").value
+  };
+
+  try {
+
+    const response = await fetch("/api/update-content", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ hero })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || "Save failed.");
+    }
+
+    status.textContent =
+      "Saved successfully! Vercel will redeploy automatically.";
+
+  } catch (error) {
+
+    console.error(error);
+
+    status.textContent =
+      "ERROR: " + error.message;
+
+  } finally {
+
+    button.disabled = false;
+
+  }
+}
 
 }
 
