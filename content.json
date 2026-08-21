@@ -1,8 +1,8 @@
 {
   "hero": {
-    "eyebrow": "LATEST BLOG POST test",
+    "eyebrow": "LATEST BLOG POST",
     "title": "NEW PROJECT COMPLETED",
-    "description": "Test",
+    "description": "... test",
     "button": "READ THE FULL POST →",
     "image": "hero-welding.jpg"
   },
