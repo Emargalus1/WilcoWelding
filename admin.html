@@ -114,7 +114,8 @@
 
     <br><br>
 
-    <button onclick="saveBlog()">Save Blog Changes</button>
+  <button id="saveButton" onclick="saveBlog()">Save Blog Changes</button>
+<p id="status"></p>
   </div>
 
 </main>
@@ -189,8 +190,6 @@ async function saveBlog() {
     button.disabled = false;
 
   }
-}
-
 }
 
 loadContent();
