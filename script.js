@@ -1,6 +1,6 @@
 async function start(){
  const d=await fetch('content.json').then(r=>r.json());
- document.querySelectorAll('[data-c]').forEach(e=>{
+document.querySelector('.hero-photo').style.backgroundImage = `url('${d.hero.image}')`;
    let v=d; for(const k of e.dataset.c.split('.')) v=v[k]; e.textContent=v;
  });
  document.querySelector('#features').innerHTML=d.program.features.map((x,i)=>`

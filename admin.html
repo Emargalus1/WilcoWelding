@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Wilco Welding Admin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 18px 0 6px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      background: #f5c400;
+      border: 0;
+      padding: 13px 22px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .note {
+      color: #666;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>WILCO WELDING ADMIN</h1>
+</header>
+
+<main>
+
+  <div class="card">
+    <h2>Latest Blog Post</h2>
+
+    <p class="note">
+      Change the information below to update the homepage blog section.
+    </p>
+
+    <label>Eyebrow</label>
+    <input id="eyebrow">
+
+    <label>Title</label>
+    <input id="title">
+
+    <label>Description</label>
+    <textarea id="description"></textarea>
+
+    <label>Button Text</label>
+    <input id="button">
+
+    <label>Background Image</label>
+    <input id="image">
+
+    <br><br>
+
+    <button onclick="saveBlog()">Save Blog Changes</button>
+  </div>
+
+</main>
+
+<script>
+
+async function loadContent() {
+
+ const response = await fetch('./content.json');
+  const content = await response.json();
+
+  document.getElementById('eyebrow').value =
+    content.hero.eyebrow || '';
+
+  document.getElementById('title').value =
+    content.hero.title || '';
+
+  document.getElementById('description').value =
+    content.hero.description || '';
+
+  document.getElementById('button').value =
+    content.hero.button || '';
+
+  document.getElementById('image').value =
+    content.hero.image || '';
+}
+
+function saveBlog() {
+
+  alert(
+    "The editor is working, but automatic saving to GitHub will be connected in the next step."
+  );
+
+}
+
+loadContent();
+
+</script>
+
+</body>
+</html>
