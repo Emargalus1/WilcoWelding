@@ -161,7 +161,7 @@ async function saveBlog() {
   button.disabled = true;
   status.textContent = "Saving...";
 
-  const hero = {
+  const blog = {
     eyebrow: document.getElementById("eyebrow").value,
     title: document.getElementById("title").value,
     description: document.getElementById("description").value,
@@ -176,7 +176,7 @@ async function saveBlog() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ hero })
+     body: JSON.stringify({ blog })
     });
 
     const result = await response.json();
