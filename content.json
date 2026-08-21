@@ -6,16 +6,14 @@
     "button": "",
     "image": "hero-welding.jpg"
   },
-
   "blog": {
-    "eyebrow": "LATEST BLOG POST",
-    "title": "NEW PROJECT COMPLETED",
-    "description": "...",
+    "eyebrow": "TTEST",
+    "title": "TEST",
+    "description": "...TEST",
     "button": "READ THE FULL POST →",
     "image": "hero-welding.jpg",
     "link": "#"
   },
-
   "program": {
     "title": "WELDING PROGRAM",
     "description": "Our Welding Program prepares students with the skills, knowledge, and hands-on experience needed for successful careers in the welding industry.",
@@ -43,7 +41,6 @@
     ],
     "button": "LEARN MORE ABOUT THE PROGRAM →"
   },
-
   "news": [
     [
       "End of Year Newsletter",
@@ -58,7 +55,6 @@
       "April 15, 2024"
     ]
   ],
-
   "events": [
     [
       "Safety Inspection Week",
@@ -73,7 +69,6 @@
       "May 31, 2024"
     ]
   ],
-
   "footer": {
     "tagline": "High quality welding education. Real world skills. Real world careers.",
     "address": "500 Wilco Drive\nRomeoville, IL 60446",
