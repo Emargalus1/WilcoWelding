@@ -1,6 +1,8 @@
 async function start() {
   try {
-    const response = await fetch('./content.json');
+    const response = await fetch(`./content.json?ts=${Date.now()}`, {
+  cache: 'no-store'
+});
 
     if (!response.ok) {
       throw new Error('Could not load content.json');
