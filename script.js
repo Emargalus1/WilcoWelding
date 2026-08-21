@@ -1,59 +1,47 @@
 async function start() {
   try {
-    const response = await fetch(
-      `https://raw.githubusercontent.com/Emargalus1/WilcoWelding/main/content.json?ts=${Date.now()}`,
-      {
-        cache: "no-store"
-      }
-    );
+    const response = await fetch(`./content.json?ts=${Date.now()}`, {
+      cache: "no-store"
+    });
 
     if (!response.ok) {
-      throw new Error("Could not load content.json");
-    }
-
-    const d = await response.json();const response = await fetch(`./content.json?t=${Date.now()}`, {
-  cache: "no-store"
-});
-  try {
-    const response = await fetch(
-  `https://raw.githubusercontent.com/Emargalus1/WilcoWelding/main/content.json?ts=${Date.now()}`,
-  {
-  cache: 'no-store'
-});
-
-    if (!response.ok) {
-      throw new Error('Could not load content.json');
+      throw new Error(`Could not load content.json (${response.status})`);
     }
 
     const d = await response.json();
 
-    // Fill all data-c fields
-    document.querySelectorAll('[data-c]').forEach((e) => {
+    // Load all editable content
+    document.querySelectorAll("[data-c]").forEach((element) => {
       let value = d;
 
-      for (const key of e.dataset.c.split('.')) {
+      for (const key of element.dataset.c.split(".")) {
         value = value?.[key];
       }
 
-      e.textContent = value ?? '';
+      if (element.tagName === "IMG") {
+        if (value) element.src = value;
+      } else {
+        element.textContent = value ?? "";
+      }
     });
 
-    // Hero background image
-    const heroPhoto = document.querySelector('.hero-photo');
+    // Hero image
+    const heroPhoto = document.querySelector(".hero-photo");
 
     if (heroPhoto && d.hero?.image) {
-      heroPhoto.style.backgroundImage = `url('${d.hero.image}')`;
+      heroPhoto.style.backgroundImage =
+        `url("${d.hero.image}")`;
     }
 
     // Blog image
-    const blogImage = document.querySelector('.blog-image img');
+    const blogImage = document.querySelector(".blog-image img");
 
     if (blogImage && d.blog?.image) {
       blogImage.src = d.blog.image;
     }
 
     // Program features
-    const features = document.querySelector('#features');
+    const features = document.querySelector("#features");
 
     if (features && Array.isArray(d.program?.features)) {
       features.innerHTML = d.program.features
@@ -62,33 +50,33 @@ async function start() {
             <div class="feature">
               <div class="icon"></div>
               <div>
-                <h3>${x[0] ?? ''}</h3>
-                <p>${x[1] ?? ''}</p>
+                <h3>${x[0] ?? ""}</h3>
+                <p>${x[1] ?? ""}</p>
               </div>
             </div>
           `
         )
-        .join('');
+        .join("");
     }
 
     // Latest news
-    const newsRows = document.querySelector('#newsRows');
+    const newsRows = document.querySelector("#newsRows");
 
     if (newsRows && Array.isArray(d.news)) {
       newsRows.innerHTML = d.news
         .map(
           (x) => `
             <div class="newsrow">
-              <span>${x[0] ?? ''}</span>
-              <span>${x[1] ?? ''}</span>
+              <span>${x[0] ?? ""}</span>
+              <span>${x[1] ?? ""}</span>
             </div>
           `
         )
-        .join('');
+        .join("");
     }
 
     // Upcoming events
-    const eventRows = document.querySelector('#eventRows');
+    const eventRows = document.querySelector("#eventRows");
 
     if (eventRows && Array.isArray(d.events)) {
       eventRows.innerHTML = d.events
@@ -97,27 +85,27 @@ async function start() {
             <div class="eventrow">
               <div class="cal">▦</div>
               <div>
-                <b>${x[0] ?? ''}</b>
-                <small>${x[1] ?? ''}</small>
+                <b>${x[0] ?? ""}</b>
+                <small>${x[1] ?? ""}</small>
               </div>
             </div>
           `
         )
-        .join('');
+        .join("");
     }
 
     // Mobile menu
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
+    const hamburger = document.querySelector(".hamburger");
+    const nav = document.querySelector("nav");
 
     if (hamburger && nav) {
       hamburger.onclick = () => {
-        nav.classList.toggle('open');
+        nav.classList.toggle("open");
       };
     }
 
   } catch (error) {
-    console.error('Wilco Welding content error:', error);
+    console.error("Wilco Welding content error:", error);
   }
 }
 
