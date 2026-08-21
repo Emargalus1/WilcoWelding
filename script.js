@@ -1,4 +1,17 @@
-const response = await fetch(`./content.json?t=${Date.now()}`, {
+async function start() {
+  try {
+    const response = await fetch(
+      `https://raw.githubusercontent.com/Emargalus1/WilcoWelding/main/content.json?ts=${Date.now()}`,
+      {
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Could not load content.json");
+    }
+
+    const d = await response.json();const response = await fetch(`./content.json?t=${Date.now()}`, {
   cache: "no-store"
 });
   try {
