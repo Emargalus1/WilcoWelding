@@ -1,4 +1,6 @@
-async function start() {
+const response = await fetch(`./content.json?t=${Date.now()}`, {
+  cache: "no-store"
+});
   try {
     const response = await fetch(
   `https://raw.githubusercontent.com/Emargalus1/WilcoWelding/main/content.json?ts=${Date.now()}`,
