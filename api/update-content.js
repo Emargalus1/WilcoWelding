@@ -1,6 +1,8 @@
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    return res.status(405).json({
+      error: "Method not allowed"
+    });
   }
 
   const token = process.env.GITHUB_TOKEN;
@@ -13,18 +15,20 @@ export default async function handler(req, res) {
 
   try {
     const body =
-      typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+      typeof req.body === "string"
+        ? JSON.parse(req.body)
+        : req.body;
 
-    const hero = body?.hero;
+    const blog = body?.blog;
 
-    if (!hero) {
+    if (!blog) {
       return res.status(400).json({
-        error: "Missing hero content."
+        error: "Missing blog content."
       });
     }
 
     const githubUrl =
-      "https://api.github.com/repos/Emargalus1/WilcoWelding/contents/content.json?ref=working-homepage";
+      "https://api.github.com/repos/Emargalus1/WilcoWelding/contents/content.json?ref=main";
 
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -33,7 +37,9 @@ export default async function handler(req, res) {
       "User-Agent": "Wilco-Welding-Admin"
     };
 
-    const currentResponse = await fetch(githubUrl, { headers });
+    const currentResponse = await fetch(githubUrl, {
+      headers
+    });
 
     if (!currentResponse.ok) {
       return res.status(currentResponse.status).json({
@@ -50,13 +56,13 @@ export default async function handler(req, res) {
 
     const content = JSON.parse(currentContent);
 
-    content.hero = {
-      ...content.hero,
-      eyebrow: String(hero.eyebrow || ""),
-      title: String(hero.title || ""),
-      description: String(hero.description || ""),
-      button: String(hero.button || ""),
-      image: String(hero.image || "")
+    content.blog = {
+      ...content.blog,
+      eyebrow: String(blog.eyebrow || ""),
+      title: String(blog.title || ""),
+      description: String(blog.description || ""),
+      button: String(blog.button || ""),
+      image: String(blog.image || "")
     };
 
     const updatedContent =
@@ -64,24 +70,35 @@ export default async function handler(req, res) {
 
     const updateResponse = await fetch(githubUrl, {
       method: "PUT",
+
       headers: {
         ...headers,
         "Content-Type": "application/json"
       },
+
       body: JSON.stringify({
-        message: "Update homepage content from Wilco Welding Admin",
+        message: "Update homepage blog from Wilco Welding Admin",
+
         content: Buffer.from(
           updatedContent,
           "utf8"
         ).toString("base64"),
+
         sha: currentFile.sha,
-        branch: "working-homepage"
+
+        branch: "main"
       })
     });
 
-    const updateResult = await updateResponse.json();
+    const updateResult =
+      await updateResponse.json();
 
     if (!updateResponse.ok) {
+      console.error(
+        "GitHub update failed:",
+        updateResult
+      );
+
       return res.status(updateResponse.status).json({
         error: "GitHub could not save the changes."
       });
@@ -89,7 +106,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      message: "Homepage content saved to GitHub.",
+      message: "Blog content saved to GitHub.",
       commit: updateResult.commit?.sha || null
     });
 
@@ -97,7 +114,8 @@ export default async function handler(req, res) {
     console.error(error);
 
     return res.status(500).json({
-      error: "Unexpected server error while saving homepage content."
+      error:
+        "Unexpected server error while saving blog content."
     });
   }
 }
