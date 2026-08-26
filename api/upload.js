@@ -1,43 +1,27 @@
-import { put } from "@vercel/blob";
+import { handleUpload } from "@vercel/blob/client";
 import { requireAdmin } from "./auth.js";
-
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: "10mb"
-    }
-  }
-};
-
-function cleanFilename(value) {
-  return value.replace(/[^a-zA-Z0-9._-]/g, "-").replace(/-+/g, "-").slice(0, 120) || "photo";
-}
 
 export default async function handler(req, res) {
   if (!requireAdmin(req, res)) return;
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
-  const contentType = String(req.headers["content-type"] || "").split(";")[0];
-  if (!contentType.startsWith("image/")) {
-    return res.status(400).json({ error: "Only image uploads are allowed." });
-  }
-
-  if (!req.body || !Buffer.isBuffer(req.body) || req.body.length === 0) {
-    return res.status(400).json({ error: "Image data is required." });
-  }
-
-  const rawFilename = decodeURIComponent(String(req.headers["x-filename"] || "photo"));
-  const pathname = `uploads/${Date.now()}-${cleanFilename(rawFilename)}`;
-
   try {
-    const blob = await put(pathname, req.body, {
-      access: "public",
-      contentType,
-      token: process.env.BLOB_READ_WRITE_TOKEN
+    const json = await handleUpload({
+      body: req.body,
+      request: req,
+      onBeforeGenerateToken: async () => ({
+        allowedContentTypes: ["image/jpeg", "image/png", "image/webp", "image/gif"],
+        maximumSizeInBytes: 10 * 1024 * 1024,
+        addRandomSuffix: true
+      }),
+      onUploadCompleted: async ({ blob }) => {
+        console.log("Blob upload completed", { pathname: blob.pathname });
+      }
     });
-    return res.status(201).json({ url: blob.url, pathname: blob.pathname });
+
+    return res.status(200).json(json);
   } catch (error) {
-    console.error("Blob upload failed:", error);
-    return res.status(500).json({ error: "Could not upload the image." });
+    console.error("Blob upload authorization failed:", error);
+    return res.status(400).json({ error: "Could not authorize the image upload." });
   }
 }
