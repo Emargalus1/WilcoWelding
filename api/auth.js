@@ -1,41 +1,26 @@
-import { timingSafeEqual } from "node:crypto";
+import { createHmac, timingSafeEqual } from "node:crypto";
 
-function unauthorized(res) {
+function deny(res) {
   res.setHeader("WWW-Authenticate", 'Basic realm="Wilco Welding Admin", charset="UTF-8"');
   return res.status(401).json({ error: "Admin authentication is required." });
 }
 
+function cookie(req) {
+  return (req.headers.cookie || "").split(";").map(x => x.trim()).find(x => x.startsWith("wilco_admin="))?.slice(12) || "";
+}
+
 export function requireAdmin(req, res) {
-  const expectedPassword = process.env.ADMIN_PASSWORD;
-
-  if (!expectedPassword) {
-    return res.status(500).json({ error: "ADMIN_PASSWORD is not configured." });
-  }
-
-  const authorization = req.headers.authorization || "";
-  if (!authorization.startsWith("Basic ")) {
-    unauthorized(res);
-    return false;
-  }
-
-  let credentials;
-  try {
-    credentials = Buffer.from(authorization.slice(6), "base64").toString("utf8");
-  } catch {
-    unauthorized(res);
-    return false;
-  }
-
-  const separator = credentials.indexOf(":");
-  const username = separator >= 0 ? credentials.slice(0, separator) : "";
-  const password = separator >= 0 ? credentials.slice(separator + 1) : "";
-  const supplied = Buffer.from(`${username}:${password}`);
-  const expected = Buffer.from(`admin:${expectedPassword}`);
-
-  if (supplied.length !== expected.length || !timingSafeEqual(supplied, expected)) {
-    unauthorized(res);
-    return false;
-  }
-
+  const password = process.env.ADMIN_PASSWORD;
+  if (!password) return res.status(500).json({ error: "ADMIN_PASSWORD is not configured." });
+  const token = createHmac("sha256", password).update("wilco-admin").digest("hex");
+  const saved = cookie(req);
+  if (saved.length === token.length && timingSafeEqual(Buffer.from(saved), Buffer.from(token))) return true;
+  const header = req.headers.authorization || "";
+  if (!header.startsWith("Basic ")) return deny(res), false;
+  const credentials = Buffer.from(header.slice(6), "base64").toString("utf8");
+  const supplied = Buffer.from(credentials);
+  const expected = Buffer.from("admin:" + password);
+  if (supplied.length !== expected.length || !timingSafeEqual(supplied, expected)) return deny(res), false;
+  res.setHeader("Set-Cookie", "wilco_admin=" + token + "; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=28800");
   return true;
 }
