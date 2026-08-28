@@ -3,7 +3,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#0b0b0b;background:#fff;font-family:Roboto,Arial,sans-serif}
 .header{height:83px;background:#050505;border-bottom:2px solid var(--yellow);position:sticky;top:0;z-index:50}
 .header-inner{height:100%;max-width:1450px;margin:auto;display:flex}
-.logo{width:270px;height:82px;display:flex;align-items:center;justify-content:center;background:#fff;position:relative;z-index:3}
+.logo{width:270px;height:82px;display:flex;align-items:center;justify-content:center;background:transparent;position:relative;z-index:3}
 .logo img{width:240px;height:78px;object-fit:contain;display:block}
 nav{flex:1;display:flex;justify-content:space-between;align-items:center;padding:0 30px 0 5px}
 nav a{font-family:Oswald,sans-serif;color:#fff;text-decoration:none;font-size:20px;font-weight:600;height:82px;display:flex;align-items:center;border-bottom:3px solid transparent;white-space:nowrap}
@@ -41,7 +41,7 @@ nav a.active,nav a:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
 footer{background:#050505;color:#fff;margin-top:0}
 .footer-main{max-width:1380px;margin:auto;display:grid;grid-template-columns:1.1fr 1fr 1fr 1.35fr;gap:38px;padding:11px 0 8px}
 .foot{border-left:1px solid #2b2b2b;padding-left:28px}.brand-foot{border-left:0;padding-left:0}
-.foot img{width:145px;height:50px;object-fit:cover;object-position:top;margin-bottom:2px}.brand-foot img{width:170px;height:70px;object-fit:contain;background:#fff;padding:2px}.foot p{margin:2px 0;font-size:13px;line-height:1.25;white-space:pre-line}
+.foot img{width:145px;height:50px;object-fit:cover;object-position:top;margin-bottom:2px}.brand-foot img{width:170px;height:70px;object-fit:contain;background:transparent;padding:0}.foot p{margin:2px 0;font-size:13px;line-height:1.25;white-space:pre-line}
 .foot h3{font-family:Oswald,sans-serif;color:var(--yellow);font-size:14px;font-weight:500;margin:0 0 2px}.foot a{display:block;color:#fff;text-decoration:none;font-size:13px;line-height:1.25}
 .social{font-size:18px;margin-top:5px}.copyright{text-align:center;background:var(--yellow);color:#000;font-weight:700;font-size:12px;padding:6px}
 @media(max-width:1100px){nav{gap:14px}nav a{font-size:16px}.logo{width:230px}.logo img{width:205px}.program{grid-template-columns:330px 1fr}.program-image img{width:330px}.features{gap:7px}.lower{margin:0 12px}}
