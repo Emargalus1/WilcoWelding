@@ -139,6 +139,7 @@ footer{background:#050505;color:#fff;margin-top:0}
 .has-portrait-blog .blog-image {
   width: auto;
   min-height: 0;
+  transform: translateX(-40px);
 }
 
 .has-portrait-blog .blog-image img {
@@ -157,6 +158,7 @@ footer{background:#050505;color:#fff;margin-top:0}
 
   .has-portrait-blog .blog-image {
     justify-self: center;
+    transform: none;
   }
 
   .blog-text {
