@@ -9,12 +9,21 @@ function cookie(req) {
   return (req.headers.cookie || "").split(";").map(x => x.trim()).find(x => x.startsWith("wilco_admin="))?.slice(12) || "";
 }
 
+export function adminToken() {
+  const password = process.env.ADMIN_PASSWORD;
+  return password ? createHmac("sha256", password).update("wilco-admin").digest("hex") : "";
+}
+
+export function validAdminToken(value) {
+  const token = adminToken();
+  return Boolean(value) && value.length === token.length && timingSafeEqual(Buffer.from(value), Buffer.from(token));
+}
+
 export function requireAdmin(req, res) {
   const password = process.env.ADMIN_PASSWORD;
   if (!password) return res.status(500).json({ error: "ADMIN_PASSWORD is not configured." });
-  const token = createHmac("sha256", password).update("wilco-admin").digest("hex");
-  const saved = cookie(req);
-  if (saved.length === token.length && timingSafeEqual(Buffer.from(saved), Buffer.from(token))) return true;
+  const token = adminToken();
+  if (validAdminToken(cookie(req))) return true;
   const header = req.headers.authorization || "";
   if (!header.startsWith("Basic ")) return deny(res), false;
   const credentials = Buffer.from(header.slice(6), "base64").toString("utf8");
