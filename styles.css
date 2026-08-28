@@ -70,7 +70,7 @@ footer{background:#050505;color:#fff;margin-top:0}
   margin: 0 auto;
   min-height: 280px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr minmax(260px, 420px);
   align-items: stretch;
 }
 
