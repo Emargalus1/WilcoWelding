@@ -25,11 +25,10 @@ export default async function handler(req, res) {
         : req.body;
 
     const blog = body?.blog;
+    const hero = body?.hero;
 
-    if (!blog) {
-      return res.status(400).json({
-        error: "Missing blog content."
-      });
+    if (!blog && !hero) {
+      return res.status(400).json({ error: "Missing content to save." });
     }
 
     const githubUrl =
@@ -61,14 +60,27 @@ export default async function handler(req, res) {
 
     const content = JSON.parse(currentContent);
 
-    content.blog = {
-      ...content.blog,
-      eyebrow: String(blog.eyebrow || ""),
-      title: String(blog.title || ""),
-      description: String(blog.description || ""),
-      button: String(blog.button || ""),
-      image: String(blog.image || "")
-    };
+    if (blog) {
+      content.blog = {
+        ...content.blog,
+        eyebrow: String(blog.eyebrow || ""),
+        title: String(blog.title || ""),
+        description: String(blog.description || ""),
+        button: String(blog.button || ""),
+        image: String(blog.image || "")
+      };
+    }
+
+    if (hero) {
+      content.hero = {
+        ...content.hero,
+        eyebrow: String(hero.eyebrow || ""),
+        title: String(hero.title || ""),
+        description: String(hero.description || ""),
+        button: String(hero.button || ""),
+        image: String(hero.image || "")
+      };
+    }
 
     const updatedContent =
       JSON.stringify(content, null, 2) + "\n";
@@ -82,7 +94,7 @@ export default async function handler(req, res) {
       },
 
       body: JSON.stringify({
-        message: "Update homepage blog from Wilco Welding Admin",
+        message: "Update homepage content from Wilco Welding Admin",
 
         content: Buffer.from(
           updatedContent,
