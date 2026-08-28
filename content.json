@@ -7,11 +7,11 @@
     "image": "hero-welding.jpg"
   },
   "blog": {
-    "eyebrow": "456",
-    "title": "456",
-    "description": "456",
-    "button": "456",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/IMG_0816-YLHrlujFhaLAuskgRQ9LIkC4CjyZox.PNG",
+    "eyebrow": "this is a test on the website",
+    "title": "Tesing Website",
+    "description": "WELDING TEST WELDING TEST WEBISTE WELDING TEST POST",
+    "button": "test",
+    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/AWS%20LOGO-SRwJJITQDt5iWE2ad08UjKP96ppVRj.webp",
     "link": "#"
   },
   "program": {
