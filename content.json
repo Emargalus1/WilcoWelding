@@ -1,9 +1,9 @@
 {
   "hero": {
-    "eyebrow": "",
-    "title": "",
-    "description": "",
-    "button": "",
+    "eyebrow": "WILCO WELDING PROGRAM",
+    "title": "BUILD YOUR FUTURE IN WELDING",
+    "description": "Hands-on training, industry-ready skills, and a path to a rewarding career.",
+    "button": "EXPLORE THE PROGRAM →",
     "image": "hero-welding.jpg"
   },
   "blog": {
