@@ -119,18 +119,34 @@ footer{background:#050505;color:#fff;margin-top:0}
 .blog-image {
   width: 100%;
   min-height: 280px;
-  display: grid;
-  place-items: center;
-  background: #f5f5f5;
+  overflow: hidden;
+  background: #111;
 }
 
 .blog-image img {
   width: 100%;
   height: 280px;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
+
+/* Portrait uploads get a narrow, photo-sized box so nothing is cropped. */
+.blog-content.has-portrait-blog {
+  grid-template-columns: 1fr auto;
+}
+
+.has-portrait-blog .blog-image {
+  width: auto;
+  min-height: 0;
+}
+
+.has-portrait-blog .blog-image img {
+  width: auto;
+  height: 280px;
+  object-fit: contain;
+}
+
 
 @media (max-width: 800px) {
   .blog-content {
