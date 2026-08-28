@@ -1,6 +1,16 @@
 {
   "rewrites": [
-    { "source": "/admin", "destination": "/api/admin" },
-    { "source": "/admin.html", "destination": "/api/admin" }
+    {
+      "source": "/admin",
+      "destination": "/api/admin"
+    },
+    {
+      "source": "/admin.html",
+      "destination": "/api/admin"
+    },
+    {
+      "source": "/hero-admin",
+      "destination": "/api/hero-admin"
+    }
   ]
 }
