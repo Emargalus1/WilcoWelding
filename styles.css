@@ -143,7 +143,8 @@ footer{background:#050505;color:#fff;margin-top:0}
 
 .has-portrait-blog .blog-image img {
   width: auto;
-  height: 280px;
+  height: 380px;
+  max-width: 420px;
   object-fit: contain;
 }
 
