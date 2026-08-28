@@ -17,7 +17,7 @@ nav a.active,nav a:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
 .hero h1{font-family:Oswald,sans-serif;font-size:50px;line-height:1;margin:0 0 12px;color:#fff;text-shadow:0 2px 1px #333}
 .hero p{font-size:17px;line-height:1.35;margin:0 0 18px;width:410px}
 .yellow-button{display:inline-block;background:var(--yellow);color:#050505;text-decoration:none;font-weight:800;padding:10px 22px;font-size:13px}
-.slider-dots{display:flex;gap:9px;margin-top:16px}.slider-dots i{width:11px;height:11px;border-radius:50%;background:#eee}.slider-dots .on{background:var(--yellow)}
+.slider-dots{display:flex;gap:9px;margin-top:16px}.slider-dots button{width:11px;height:11px;padding:0;border:0;border-radius:50%;background:#eee;cursor:pointer}.slider-dots .on{background:var(--yellow)}
 .arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:58px;line-height:1;cursor:pointer}.arrow.left{left:34px}.arrow.right{right:34px}
 .program{max-width:1360px;margin:0 auto;padding:11px 7px 15px;display:grid;grid-template-columns:405px 1fr;gap:43px;background:#fff}
 .program-image{padding-top:0}.program-image img{width:405px;height:193px;display:block;object-fit:cover;border-radius:4px}
