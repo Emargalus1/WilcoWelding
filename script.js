@@ -25,12 +25,48 @@ async function start() {
       }
     });
 
-    // Hero image
+    // Hero image slider
     const heroPhoto = document.querySelector(".hero-photo");
+    const heroSection = document.querySelector(".hero");
+    const previousHero = document.querySelector(".hero .arrow.left");
+    const nextHero = document.querySelector(".hero .arrow.right");
+    const heroDots = document.querySelector(".hero .slider-dots");
+    const heroSlides = Array.isArray(d.hero?.slides)
+      ? d.hero.slides.filter(Boolean)
+      : [];
 
-    if (heroPhoto && d.hero?.image) {
-      heroPhoto.style.backgroundImage =
-        `url("${d.hero.image}")`;
+    if (!heroSlides.length && d.hero?.image) heroSlides.push(d.hero.image);
+
+    if (heroPhoto && heroSlides.length) {
+      let currentHeroSlide = 0;
+      const showHeroSlide = (index) => {
+        currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+        const imageUrl = String(heroSlides[currentHeroSlide]).replaceAll('"', '%22');
+        heroPhoto.style.backgroundImage = `url("${imageUrl}")`;
+        if (heroDots) {
+          heroDots.innerHTML = "";
+          heroSlides.forEach((_, dotIndex) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = dotIndex === currentHeroSlide ? "on" : "";
+            dot.setAttribute("aria-label", `Show hero photo ${dotIndex + 1}`);
+            dot.onclick = () => showHeroSlide(dotIndex);
+            heroDots.appendChild(dot);
+          });
+        }
+      };
+
+      showHeroSlide(0);
+      previousHero?.addEventListener("click", () => showHeroSlide(currentHeroSlide - 1));
+      nextHero?.addEventListener("click", () => showHeroSlide(currentHeroSlide + 1));
+
+      if (heroSlides.length < 2) {
+        previousHero && (previousHero.hidden = true);
+        nextHero && (nextHero.hidden = true);
+        heroDots && (heroDots.hidden = true);
+      } else {
+        heroSection?.classList.add("has-hero-slider");
+      }
     }
 
     // Blog image — portrait photos use a narrower box so the whole image is visible.
