@@ -1,4 +1,4 @@
-import { handleUpload } from "@vercel/blob/client";
+import { handleUpload } from "@vercel/blob";
 import { requireAdmin, validAdminToken } from "./auth.js";
 
 function payload(req) {
