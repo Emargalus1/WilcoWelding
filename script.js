@@ -27,6 +27,7 @@ async function start() {
 
     // Hero image slider
     const heroPhoto = document.querySelector(".hero-photo");
+    const heroForeground = document.querySelector(".hero-photo-foreground");
     const heroSection = document.querySelector(".hero");
     const previousHero = document.querySelector(".hero .arrow.left");
     const nextHero = document.querySelector(".hero .arrow.right");
@@ -43,6 +44,7 @@ async function start() {
         currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
         const imageUrl = String(heroSlides[currentHeroSlide]).replaceAll('"', '%22');
         heroPhoto.style.backgroundImage = `url("${imageUrl}")`;
+        if (heroForeground) heroForeground.style.backgroundImage = `url("${imageUrl}")`;
         if (heroDots) {
           heroDots.innerHTML = "";
           heroSlides.forEach((_, dotIndex) => {
