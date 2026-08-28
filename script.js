@@ -33,11 +33,19 @@ async function start() {
         `url("${d.hero.image}")`;
     }
 
-    // Blog image
+    // Blog image — portrait photos use a narrower box so the whole image is visible.
     const blogImage = document.querySelector(".blog-image img");
+    const blogContent = document.querySelector(".blog-content");
 
     if (blogImage && d.blog?.image) {
+      const setBlogImageLayout = () => {
+        const isPortrait = blogImage.naturalHeight > blogImage.naturalWidth;
+        blogContent?.classList.toggle("has-portrait-blog", isPortrait);
+      };
+
+      blogImage.addEventListener("load", setBlogImageLayout, { once: true });
       blogImage.src = d.blog.image;
+      if (blogImage.complete) setBlogImageLayout();
     }
 
     // Program features
