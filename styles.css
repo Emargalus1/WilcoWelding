@@ -149,8 +149,13 @@ footer{background:#050505;color:#fff;margin-top:0}
 
 
 @media (max-width: 800px) {
-  .blog-content {
+  .blog-content,
+  .blog-content.has-portrait-blog {
     grid-template-columns: 1fr;
+  }
+
+  .has-portrait-blog .blog-image {
+    justify-self: center;
   }
 
   .blog-text {
