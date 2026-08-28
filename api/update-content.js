@@ -78,7 +78,10 @@ export default async function handler(req, res) {
         title: String(hero.title || ""),
         description: String(hero.description || ""),
         button: String(hero.button || ""),
-        image: String(hero.image || "")
+        image: String(hero.image || ""),
+        slides: Array.isArray(hero.slides)
+          ? hero.slides.map((url) => String(url || "").trim()).filter(Boolean).slice(0, 8)
+          : (Array.isArray(content.hero?.slides) ? content.hero.slides : [])
       };
     }
 
