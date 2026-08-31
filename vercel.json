@@ -19,6 +19,10 @@
     {
       "source": "/partners-admin",
       "destination": "/api/partners-admin"
+    },
+    {
+      "source": "/resources-admin",
+      "destination": "/api/resources-admin"
     }
   ]
 }
