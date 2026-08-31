@@ -89,5 +89,27 @@
     "phone": "815-838-6941",
     "email": "Welding@wilcoacc.org",
     "copyright": "© 2024 Wilco Welding Program. All Rights Reserved."
-  }
+  },
+  "partners": [
+    {
+      "name": "Chicago Pipefitters Local 597",
+      "image": "partner-597.png"
+    },
+    {
+      "name": "Dump It Junk Removal Service LLC.",
+      "image": "partner-dump-it.png"
+    },
+    {
+      "name": "Bulldog Derby Parts",
+      "image": "partner-bulldog.png"
+    },
+    {
+      "name": "Metropolitan Industries, Inc.",
+      "image": "partner-metropolitan.png"
+    },
+    {
+      "name": "Iron Workers Local 444",
+      "image": "partner-444.png"
+    }
+  ]
 }
