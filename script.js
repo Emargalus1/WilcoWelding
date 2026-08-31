@@ -11,7 +11,7 @@ async function start() {
     const d = await response.json();
     const blogPosts = Array.isArray(d.blog?.posts) && d.blog.posts.length
       ? d.blog.posts.slice(0, 5)
-      : (d.blog ? [d.blog] : []);
+      : (d.blog?.title || d.blog?.description || d.blog?.image ? [d.blog] : []);
 
     const blogFeature = document.querySelector(".blog-feature");
     if (blogFeature && blogPosts.length === 0) {
