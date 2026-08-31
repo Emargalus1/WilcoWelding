@@ -13,7 +13,7 @@ body{margin:0;background:#f4f6f9;font:16px system-ui;color:#172031}.bar{backgrou
 <main class="wrap"><a href="/admin">← Back to blog editor</a><section class="card">
 <h1>Homepage Hero</h1><p class="help">Upload as many as eight photos. Visitors can move through them with the arrows on the homepage.</p>
 <label>Small heading<input id="eyebrow"></label><label>Main heading<input id="title"></label><label>Description<textarea id="description"></textarea></label><label>Button text<input id="button"></label>
-<h2>Hero photos</h2><div id="slides"></div><button id="add" class="secondary">+ Add another photo</button><br><button id="save">Save hero</button><span id="status"></span>
+<h2>Hero photos</h2><div id="slides"></div><button id="add" class="secondary">+ Add another photo</button><br><button id="save" type="button">Save Changes</button><span id="status"></span>
 </section></section></main>
 <script type="module">
 import { upload } from "https://esm.sh/@vercel/blob@2.0.0/client";
