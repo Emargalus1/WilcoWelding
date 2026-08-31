@@ -16,7 +16,6 @@
 <main>
 <section class="hero"><div class="hero-inner"><div class="eyebrow">WILCO WELDING PROGRAM</div><h1>BUILD YOUR FUTURE IN WELDING</h1><p>Develop practical skills, confidence, and the work habits needed for a successful future in the welding industry.</p><a class="button" href="#overview">EXPLORE THE PROGRAM</a></div></section>
 <section class="section split" id="overview"><div><h2>LEARN BY DOING</h2><div class="line"></div><p class="lead" id="programDescription">Our Welding Program prepares students with the skills, knowledge, and hands-on experience needed for successful careers in the welding industry.</p><p class="lead">Students learn in a shop setting, working with real equipment and projects while building a strong foundation in safe, professional welding practices.</p></div><img class="photo" src="program-lab.webp" alt="Wilco students learning welding"></section>
-<section class="features"><div class="section"><h2>WHAT YOU’LL LEARN</h2><div class="line"></div><div class="feature-grid" id="featureGrid"></div></div></section>
 <section class="career"><div class="section"><h2>CAREER-READY SKILLS</h2><div class="line"></div><p class="lead">Along with welding skills, students practice the professional habits employers value: thoughtful problem-solving, safety, teamwork, responsibility, and quality work.</p><div class="career-grid"><article class="skill-card"><h3>REASONING &amp; PROBLEM-SOLVING</h3><ul><li>Follow guidelines to arrange work in the proper order.</li><li>Recognize important information and potential problems.</li><li>Develop solutions and weigh the benefits of possible actions.</li><li>Follow verbal and written directions.</li></ul></article><article class="skill-card"><h3>MANAGING WORK</h3><ul><li>Monitor progress and learning.</li><li>Move between tasks and sources of information with focus.</li><li>Gather needed equipment and materials and oversee their use.</li><li>Follow shop drawings, blueprints, procedures, and safety protocols.</li></ul></article><article class="skill-card"><h3>WORKING WITH PEOPLE</h3><ul><li>Work effectively as a team member.</li><li>Accept direction and constructive criticism.</li><li>Complete work on time and contribute to a reliable shop environment.</li></ul></article><article class="skill-card"><h3>INDUSTRY EQUIPMENT</h3><ul><li>Safely operate equipment and choose the right tools for a job.</li><li>Evaluate quality and performance.</li><li>Identify technical problems and find solutions.</li><li>Maintain equipment and consider alternative ways to complete a task.</li></ul></article></div></div></section>
 <section class="cta"><h2>READY TO LEARN MORE?</h2><p>Contact Wilco Welding to ask questions about the program and how to get started.</p><a class="button" href="index.html#contact">CONTACT US</a></section>
 </main>
@@ -25,8 +24,6 @@
 fetch("content.json",{cache:"no-store"}).then(r=>r.json()).then(data=>{
  const program=data.program||{};
  document.getElementById("programDescription").textContent=program.description||"";
- const features=Array.isArray(program.features)?program.features:[];
- document.getElementById("featureGrid").innerHTML=features.map((item,index)=>'<article class="feature"><div class="icon">0'+(index+1)+'</div><h3>'+String(item[0]||"")+'</h3><p>'+String(item[1]||"")+'</p></article>').join("");
 }).catch(()=>{});
 </script>
 </body>
