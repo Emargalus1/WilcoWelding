@@ -9,6 +9,9 @@ async function start() {
     }
 
     const d = await response.json();
+    const blogPosts = Array.isArray(d.blog?.posts) && d.blog.posts.length
+      ? d.blog.posts.slice(0, 5)
+      : (d.blog ? [d.blog] : []);
 
     // Load all editable content
     document.querySelectorAll("[data-c]").forEach((element) => {
@@ -84,6 +87,45 @@ async function start() {
       blogImage.addEventListener("load", setBlogImageLayout, { once: true });
       blogImage.src = d.blog.image;
       if (blogImage.complete) setBlogImageLayout();
+    }
+
+    // Previous blog posts
+    const blogHistory = document.querySelector("#blogHistory");
+    const blogHistoryGrid = document.querySelector(".blog-history-grid");
+
+    if (blogHistory && blogHistoryGrid) {
+      const olderPosts = blogPosts.slice(1, 5);
+      blogHistory.hidden = olderPosts.length === 0;
+      blogHistoryGrid.replaceChildren();
+
+      olderPosts.forEach((post) => {
+        const card = document.createElement("article");
+        card.className = "blog-history-card";
+
+        if (post.image) {
+          const image = document.createElement("img");
+          image.src = post.image;
+          image.alt = post.title || "Wilco Welding blog post";
+          card.appendChild(image);
+        }
+
+        const text = document.createElement("div");
+        text.className = "blog-history-card-text";
+
+        const eyebrow = document.createElement("div");
+        eyebrow.className = "blog-eyebrow";
+        eyebrow.textContent = post.eyebrow || "WILCO WELDING NEWS";
+
+        const title = document.createElement("h3");
+        title.textContent = post.title || "Untitled post";
+
+        const description = document.createElement("p");
+        description.textContent = post.description || "";
+
+        text.append(eyebrow, title, description);
+        card.appendChild(text);
+        blogHistoryGrid.appendChild(card);
+      });
     }
 
     // Program features
