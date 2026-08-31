@@ -15,6 +15,10 @@
     {
       "source": "/events-admin",
       "destination": "/api/events-admin"
+    },
+    {
+      "source": "/partners-admin",
+      "destination": "/api/partners-admin"
     }
   ]
 }
