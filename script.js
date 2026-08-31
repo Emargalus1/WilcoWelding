@@ -13,6 +13,11 @@ async function start() {
       ? d.blog.posts.slice(0, 5)
       : (d.blog ? [d.blog] : []);
 
+    const blogFeature = document.querySelector(".blog-feature");
+    if (blogFeature && blogPosts.length === 0) {
+      blogFeature.hidden = true;
+    }
+
     // Load all editable content
     document.querySelectorAll("[data-c]").forEach((element) => {
       let value = d;
