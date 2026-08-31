@@ -1,0 +1,12 @@
+import { requireAdmin } from "./auth.js";
+
+export default function handler(req, res) {
+  if (!requireAdmin(req, res)) return;
+  if (req.method !== "GET") return res.status(405).send("Method not allowed");
+
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  return res.status(200).send(String.raw`<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Events Admin | Wilco Welding</title><style>
+:root{--ink:#172031;--muted:#667085;--line:#d8dee8;--accent:#d97706;--accent-dark:#a95005}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:#f4f6f9;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.topbar{background:#111827;color:#fff;border-bottom:4px solid var(--accent)}.topbar-inner,main{width:min(100% - 32px,1100px);margin:auto}.topbar-inner{padding:20px 0}.topbar h1{margin:0;font-size:1.2rem}.topbar p{margin:3px 0 0;color:#d1d5db;font-size:.88rem}main{margin-top:32px;margin-bottom:56px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,32px);box-shadow:0 12px 30px rgba(16,24,40,.06)}h2{margin:0 0 8px}p{line-height:1.55;color:var(--muted)}.button{display:inline-block;margin:10px 0 24px;padding:12px 16px;border-radius:9px;background:var(--accent);color:#fff;text-decoration:none;font-weight:750}.button:hover{background:var(--accent-dark)}iframe{display:block;width:100%;height:620px;border:1px solid var(--line);border-radius:10px}
+</style></head><body><header class="topbar"><div class="topbar-inner"><h1>Wilco Welding Events Admin</h1><p>Manage the public event calendar through Google Calendar.</p></div></header><main><section class="card"><h2>Upcoming Events</h2><p>Add, edit, or delete events in Google Calendar. Changes will automatically appear on the website's Upcoming Events page. Website visitors can only view the calendar.</p><a class="button" href="https://calendar.google.com/" target="_blank" rel="noopener">OPEN GOOGLE CALENDAR</a><iframe src="https://calendar.google.com/calendar/embed?src=c_72fc32ad3c381c6db26433f269fa540893eac3071672d69cc4c64341551e7919%40group.calendar.google.com&ctz=America%2FChicago" title="Public Wilco Welding calendar preview"></iframe></section></main></body></html>`);
+}
