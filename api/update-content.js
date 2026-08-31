@@ -27,8 +27,9 @@ export default async function handler(req, res) {
     const blog = body?.blog;
     const blogPosts = body?.blogPosts;
     const hero = body?.hero;
+    const events = body?.events;
 
-    if (!blog && !hero) {
+    if (!blog && !hero && !Array.isArray(events)) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
@@ -93,6 +94,16 @@ export default async function handler(req, res) {
       };
     }
 
+    if (Array.isArray(events)) {
+      content.events = events
+        .map((event) => [
+          String(Array.isArray(event) ? event[0] || "" : event?.title || "").trim(),
+          String(Array.isArray(event) ? event[1] || "" : event?.date || "").trim()
+        ])
+        .filter(([title, date]) => title || date)
+        .slice(0, 20);
+    }
+
     if (hero) {
       content.hero = {
         ...content.hero,
@@ -148,7 +159,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      message: "Blog content saved to GitHub.",
+      message: "Website content saved to GitHub.",
       commit: updateResult.commit?.sha || null
     });
 
@@ -157,7 +168,7 @@ export default async function handler(req, res) {
 
     return res.status(500).json({
       error:
-        "Unexpected server error while saving blog content."
+        "Unexpected server error while saving website content."
     });
   }
 }
