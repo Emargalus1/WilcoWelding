@@ -14,19 +14,19 @@
     ]
   },
   "blog": {
-    "eyebrow": "this is a test on the website",
-    "title": "Tesing Website",
-    "description": "WELDING TEST WELDING TEST WEBISTE WELDING TEST POST",
-    "button": "test",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/hero-welding-TVavVjILjELvC8FSgWClKRUclYqKQn.jpg",
+    "eyebrow": "Wilco Welding",
+    "title": "Wilco Welding New Website",
+    "description": "The Wilco Welding Department is committed to highlighting the opportunities, resources, and industry connections available through our program. Our website will serve as a central resource for information about the welding program, student support services, the AWS Student Chapter, and our partnerships with industry professionals and employers.",
+    "button": "View More",
+    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco_Welding_Logo-5YCSiJu0DuV4nqxQSBnvFQWw5cn3pX.jpg",
     "link": "#",
     "posts": [
       {
-        "eyebrow": "this is a test on the website",
-        "title": "Tesing Website",
-        "description": "WELDING TEST WELDING TEST WEBISTE WELDING TEST POST",
-        "button": "test",
-        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/hero-welding-TVavVjILjELvC8FSgWClKRUclYqKQn.jpg",
+        "eyebrow": "Wilco Welding",
+        "title": "Wilco Welding New Website",
+        "description": "The Wilco Welding Department is committed to highlighting the opportunities, resources, and industry connections available through our program. Our website will serve as a central resource for information about the welding program, student support services, the AWS Student Chapter, and our partnerships with industry professionals and employers.",
+        "button": "View More",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco_Welding_Logo-5YCSiJu0DuV4nqxQSBnvFQWw5cn3pX.jpg",
         "link": "#"
       }
     ]
