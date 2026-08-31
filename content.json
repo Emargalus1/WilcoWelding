@@ -19,7 +19,17 @@
     "description": "WELDING TEST WELDING TEST WEBISTE WELDING TEST POST",
     "button": "test",
     "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/hero-welding-TVavVjILjELvC8FSgWClKRUclYqKQn.jpg",
-    "link": "#"
+    "link": "#",
+    "posts": [
+      {
+        "eyebrow": "this is a test on the website",
+        "title": "Tesing Website",
+        "description": "WELDING TEST WELDING TEST WEBISTE WELDING TEST POST",
+        "button": "test",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/hero-welding-TVavVjILjELvC8FSgWClKRUclYqKQn.jpg",
+        "link": "#"
+      }
+    ]
   },
   "program": {
     "title": "WELDING PROGRAM",
