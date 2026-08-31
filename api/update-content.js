@@ -28,8 +28,9 @@ export default async function handler(req, res) {
     const blogPosts = body?.blogPosts;
     const hero = body?.hero;
     const events = body?.events;
+    const partners = body?.partners;
 
-    if (!blog && !hero && !Array.isArray(events)) {
+    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners)) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
@@ -92,6 +93,16 @@ export default async function handler(req, res) {
         ...latestPost,
         posts
       };
+    }
+
+    if (Array.isArray(partners)) {
+      content.partners = partners
+        .map((partner) => ({
+          name: String(partner?.name || "").trim(),
+          image: String(partner?.image || "").trim()
+        }))
+        .filter((partner) => partner.name || partner.image)
+        .slice(0, 30);
     }
 
     if (Array.isArray(events)) {
