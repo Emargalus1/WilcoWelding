@@ -115,5 +115,33 @@
       "name": "Joliet Junior College",
       "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/jjc-Ns7f8vXhi0FsqtL3SqVgytg318JFlB.png"
     }
-  ]
+  ],
+  "resources": {
+    "heading": "RESOURCE CENTER",
+    "lead": "Use this page to find the resources you need throughout the Wilco Welding Program. New documents and links will be added here as they become available.",
+    "cards": [
+      {
+        "title": "SYLLABUS & COURSE DOCUMENTS",
+        "description": "Find program expectations, course materials, and important class documents.",
+        "action": "VIEW SYLLABI →",
+        "link": "syllabi.html"
+      },
+      {
+        "title": "SUPPLY LISTS",
+        "description": "Review the tools, clothing, and personal protective equipment you may need for class.",
+        "action": "ASK ABOUT SUPPLIES →",
+        "link": "index.html#contact"
+      },
+      {
+        "title": "SAFETY & PPE",
+        "description": "Refresh the shop safety practices and protective equipment requirements used in the program.",
+        "action": "GET SAFETY HELP →",
+        "link": "index.html#contact"
+      }
+    ],
+    "syllabi": {
+      "welding1": "",
+      "welding2": ""
+    }
+  }
 }
