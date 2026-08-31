@@ -23,6 +23,10 @@
     {
       "source": "/resources-admin",
       "destination": "/api/resources-admin"
+    },
+    {
+      "source": "/page-heroes-admin",
+      "destination": "/api/page-heroes-admin"
     }
   ]
 }
