@@ -29,8 +29,9 @@ export default async function handler(req, res) {
     const hero = body?.hero;
     const events = body?.events;
     const partners = body?.partners;
+    const resources = body?.resources;
 
-    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners)) {
+    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
@@ -92,6 +93,28 @@ export default async function handler(req, res) {
         ...content.blog,
         ...latestPost,
         posts
+      };
+    }
+
+    if (resources) {
+      const cleanResource = (resource, fallback = {}) => ({
+        title: String(resource?.title || fallback.title || "").trim(),
+        description: String(resource?.description || fallback.description || "").trim(),
+        action: String(resource?.action || fallback.action || "").trim(),
+        link: String(resource?.link || fallback.link || "#").trim() || "#"
+      });
+      const existingResources = content.resources || {};
+      content.resources = {
+        ...existingResources,
+        heading: String(resources.heading || existingResources.heading || "").trim(),
+        lead: String(resources.lead || existingResources.lead || "").trim(),
+        cards: Array.isArray(resources.cards)
+          ? resources.cards.map((card, index) => cleanResource(card, existingResources.cards?.[index])).slice(0, 3)
+          : existingResources.cards || [],
+        syllabi: {
+          welding1: String(resources.syllabi?.welding1 || existingResources.syllabi?.welding1 || "").trim(),
+          welding2: String(resources.syllabi?.welding2 || existingResources.syllabi?.welding2 || "").trim()
+        }
       };
     }
 
