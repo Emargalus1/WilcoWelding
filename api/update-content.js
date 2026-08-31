@@ -25,6 +25,7 @@ export default async function handler(req, res) {
         : req.body;
 
     const blog = body?.blog;
+    const blogPosts = body?.blogPosts;
     const hero = body?.hero;
 
     if (!blog && !hero) {
@@ -61,13 +62,34 @@ export default async function handler(req, res) {
     const content = JSON.parse(currentContent);
 
     if (blog) {
+      const cleanPost = (post) => ({
+        eyebrow: String(post?.eyebrow || ""),
+        title: String(post?.title || ""),
+        description: String(post?.description || ""),
+        button: String(post?.button || ""),
+        image: String(post?.image || ""),
+        link: String(post?.link || "#")
+      });
+
+      const latestPost = cleanPost(blog);
+      const suppliedPosts = Array.isArray(blogPosts)
+        ? blogPosts.map(cleanPost).filter((post) =>
+            post.title || post.description || post.image
+          ).slice(0, 5)
+        : [];
+
+      const existingPosts = Array.isArray(content.blog?.posts)
+        ? content.blog.posts.map(cleanPost)
+        : [];
+
+      const posts = suppliedPosts.length
+        ? suppliedPosts
+        : [latestPost, ...existingPosts.slice(1)].slice(0, 5);
+
       content.blog = {
         ...content.blog,
-        eyebrow: String(blog.eyebrow || ""),
-        title: String(blog.title || ""),
-        description: String(blog.description || ""),
-        button: String(blog.button || ""),
-        image: String(blog.image || "")
+        ...latestPost,
+        posts
       };
     }
 
