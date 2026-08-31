@@ -30,8 +30,9 @@ export default async function handler(req, res) {
     const events = body?.events;
     const partners = body?.partners;
     const resources = body?.resources;
+    const pageHeroes = body?.pageHeroes;
 
-    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources) {
+    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
@@ -94,6 +95,22 @@ export default async function handler(req, res) {
         ...latestPost,
         posts
       };
+    }
+
+    if (pageHeroes) {
+      const pages = ["program", "resources", "partners", "events", "contact"];
+      const existing = content.pageHeroes || {};
+      content.pageHeroes = pages.reduce((result, page) => {
+        const incoming = pageHeroes?.[page] || {};
+        const previous = existing?.[page] || {};
+        result[page] = {
+          eyebrow: String(incoming.eyebrow || previous.eyebrow || "").trim(),
+          title: String(incoming.title || previous.title || "").trim(),
+          description: String(incoming.description || previous.description || "").trim(),
+          image: String(incoming.image || previous.image || "").trim()
+        };
+        return result;
+      }, {});
     }
 
     if (resources) {
