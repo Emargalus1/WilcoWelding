@@ -14,38 +14,13 @@
     ]
   },
   "blog": {
-    "eyebrow": "WILCO WELDING NEWS",
-    "title": "Wilco welding test site 2",
-    "description": "Welding test site 2",
-    "button": "READ MORE",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/IMG_0816-WwHHeJIOtRDao41eTWZAeoHO0YLdJ1.PNG",
+    "eyebrow": "",
+    "title": "",
+    "description": "",
+    "button": "",
+    "image": "",
     "link": "#",
-    "posts": [
-      {
-        "eyebrow": "WILCO WELDING NEWS",
-        "title": "Wilco welding test site 2",
-        "description": "Welding test site 2",
-        "button": "READ MORE",
-        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/IMG_0816-WwHHeJIOtRDao41eTWZAeoHO0YLdJ1.PNG",
-        "link": "#"
-      },
-      {
-        "eyebrow": "WILCO WELDING NEWS",
-        "title": "Test site",
-        "description": "Testing history site",
-        "button": "READ MORE",
-        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/AWS%20LOGO-0tgPs5EaMGFM9wpAcl3jrKyro6t6EP.webp",
-        "link": "#"
-      },
-      {
-        "eyebrow": "Wilco Welding",
-        "title": "Wilco welding test site",
-        "description": "wilco welding test site",
-        "button": "View More",
-        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/AWS%20LOGO-g6QNRFnnPJD9nT2o2fhppqJXSjp6Jh.webp",
-        "link": "#"
-      }
-    ]
+    "posts": []
   },
   "program": {
     "title": "WELDING PROGRAM",
