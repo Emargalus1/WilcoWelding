@@ -15,18 +15,18 @@
   },
   "blog": {
     "eyebrow": "Wilco Welding",
-    "title": "Wilco Welding New Website",
-    "description": "The Wilco Welding Department is committed to highlighting the opportunities, resources, and industry connections available through our program. Our website will serve as a central resource for information about the welding program, student support services, the AWS Student Chapter, and our partnerships with industry professionals and employers.",
+    "title": "Wilco welding test site",
+    "description": "wilco welding test site",
     "button": "View More",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco_Welding_Logo-5YCSiJu0DuV4nqxQSBnvFQWw5cn3pX.jpg",
+    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/AWS%20LOGO-g6QNRFnnPJD9nT2o2fhppqJXSjp6Jh.webp",
     "link": "#",
     "posts": [
       {
         "eyebrow": "Wilco Welding",
-        "title": "Wilco Welding New Website",
-        "description": "The Wilco Welding Department is committed to highlighting the opportunities, resources, and industry connections available through our program. Our website will serve as a central resource for information about the welding program, student support services, the AWS Student Chapter, and our partnerships with industry professionals and employers.",
+        "title": "Wilco welding test site",
+        "description": "wilco welding test site",
         "button": "View More",
-        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco_Welding_Logo-5YCSiJu0DuV4nqxQSBnvFQWw5cn3pX.jpg",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/AWS%20LOGO-g6QNRFnnPJD9nT2o2fhppqJXSjp6Jh.webp",
         "link": "#"
       }
     ]
