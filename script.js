@@ -187,6 +187,29 @@ async function start() {
         .join("");
     }
 
+    // Partner organizations
+    const partnerLogos = document.querySelector(".partner-logos");
+
+    if (partnerLogos && Array.isArray(d.partners)) {
+      partnerLogos.replaceChildren();
+
+      d.partners.forEach((partner) => {
+        const card = document.createElement("div");
+        card.className = "partner-logo";
+
+        if (partner?.image) {
+          const image = document.createElement("img");
+          image.src = partner.image;
+          image.alt = partner.name || "Wilco Welding partner";
+          card.appendChild(image);
+        } else {
+          card.textContent = partner?.name || "Partner";
+        }
+
+        partnerLogos.appendChild(card);
+      });
+    }
+
     // Mobile menu
     const hamburger = document.querySelector(".hamburger");
     const nav = document.querySelector("nav");
