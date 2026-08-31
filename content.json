@@ -143,5 +143,37 @@
       "welding1": "",
       "welding2": ""
     }
+  },
+  "pageHeroes": {
+    "program": {
+      "eyebrow": "WILCO WELDING PROGRAM",
+      "title": "BUILD YOUR FUTURE IN WELDING",
+      "description": "Develop practical skills, confidence, and the work habits needed for a successful future in the welding industry.",
+      "image": "hero-welding.jpg"
+    },
+    "resources": {
+      "eyebrow": "WILCO WELDING",
+      "title": "STUDENT RESOURCES",
+      "description": "Helpful information and materials to support your success in the classroom, shop, and future career.",
+      "image": "hero-welding.jpg"
+    },
+    "partners": {
+      "eyebrow": "WILCO WELDING",
+      "title": "EMPLOYERS & PARTNERS",
+      "description": "Working together to prepare skilled, safety-focused students for meaningful careers in welding, manufacturing, fabrication, and the building trades.",
+      "image": "hero-welding.jpg"
+    },
+    "events": {
+      "eyebrow": "WILCO WELDING",
+      "title": "UPCOMING EVENTS",
+      "description": "Stay up to date with Wilco Welding events, activities, and important dates.",
+      "image": "hero-welding.jpg"
+    },
+    "contact": {
+      "eyebrow": "WILCO WELDING PROGRAM",
+      "title": "CONTACT US",
+      "description": "",
+      "image": "hero-welding.jpg"
+    }
   }
 }
