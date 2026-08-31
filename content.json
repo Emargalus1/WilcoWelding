@@ -14,13 +14,21 @@
     ]
   },
   "blog": {
-    "eyebrow": "Wilco Welding",
-    "title": "Wilco welding test site",
-    "description": "wilco welding test site",
-    "button": "View More",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/AWS%20LOGO-g6QNRFnnPJD9nT2o2fhppqJXSjp6Jh.webp",
+    "eyebrow": "WILCO WELDING NEWS",
+    "title": "Test site",
+    "description": "Testing history site",
+    "button": "READ MORE",
+    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/AWS%20LOGO-0tgPs5EaMGFM9wpAcl3jrKyro6t6EP.webp",
     "link": "#",
     "posts": [
+      {
+        "eyebrow": "WILCO WELDING NEWS",
+        "title": "Test site",
+        "description": "Testing history site",
+        "button": "READ MORE",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/AWS%20LOGO-0tgPs5EaMGFM9wpAcl3jrKyro6t6EP.webp",
+        "link": "#"
+      },
       {
         "eyebrow": "Wilco Welding",
         "title": "Wilco welding test site",
