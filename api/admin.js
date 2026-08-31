@@ -28,16 +28,16 @@ export default function handler(req, res) {
     input:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,6,.15); } textarea { min-height:120px; resize:vertical; line-height:1.45; }
     .upload-box { margin-top:26px; padding:18px; border:1px dashed #b9c2d0; border-radius:12px; background:#fbfcfe; }.upload-box h3 { margin:0 0 5px; font-size:1rem; }.upload-row { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px; }input[type="file"] { max-width:330px; padding:8px; background:#fff; }
     button { appearance:none; border:0; border-radius:9px; padding:11px 16px; font:inherit; font-weight:750; cursor:pointer; }.primary { background:var(--accent); color:#fff; }.primary:hover { background:var(--accent-dark); }.secondary { background:#edf1f6; color:#263244; }.secondary:hover { background:#e2e8f0; }button:disabled { cursor:wait; opacity:.65; }
-    .footer-actions { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:14px; }#status { margin:0; min-height:1.4em; color:var(--muted); font-size:.9rem; }#status[data-kind="success"] { color:var(--success); }#status[data-kind="error"] { color:var(--danger); }
+    .footer-actions { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:14px; }#status { margin:0; min-height:1.4em; color:var(--muted); font-size:.9rem; }.history { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); }.history h3 { margin:0 0 5px; }.history-copy { margin:0 0 13px; color:var(--muted); font-size:.88rem; }.history-list { display:grid; gap:9px; }.history-item { padding:12px 14px; border:1px solid var(--line); border-radius:9px; background:#fbfcfe; }.history-item b { display:block; }.history-item span { color:var(--muted); font-size:.84rem; }#status[data-kind="success"] { color:var(--success); }#status[data-kind="error"] { color:var(--danger); }
     @media (max-width:640px) { .grid { grid-template-columns:1fr; }.topbar-inner { padding:16px 0; }main { margin-top:24px; }.footer-actions { align-items:stretch; flex-direction:column; }.footer-actions button { width:100%; } }
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="topbar-inner"><div class="mark">W</div><div><h1>Wilco Welding Admin</h1><p>Update the homepage and project photo.</p></div></div></header>
+  <header class="topbar"><div class="topbar-inner"><div class="mark">W</div><div><h1>Wilco Welding Admin</h1><p>Publish and manage your recent blog posts.</p></div></div></header>
   <main>
-    <div class="intro"><h2>Homepage content</h2><p>Make your edits below, then save them when you are finished.</p></div>
+    <div class="intro"><h2>Blog posts</h2><p>Publish a new post or update the newest post. Your most recent five posts are kept in the website history.</p></div>
     <section class="card">
-      <h3 class="section-title">Hero section</h3><p class="section-copy">This is the main message visitors see when they first arrive.</p>
+      <h3 class="section-title">Current blog post</h3><p class="section-copy">The newest post is featured on the Home page. Older posts remain below it.</p>
       <div class="grid">
         <div class="field"><label for="eyebrow">Small heading</label><input id="eyebrow" placeholder="Example: Wilco Welding"></div>
         <div class="field"><label for="button">Button text</label><input id="button" placeholder="Example: Get a quote"></div>
@@ -46,7 +46,7 @@ export default function handler(req, res) {
         <div class="field wide"><label for="image">Photo web address</label><input id="image" type="url" placeholder="This fills in after a photo upload."><p class="hint">You can paste an image address, or upload a photo below.</p></div>
       </div>
       <div class="upload-box"><h3>Upload a photo</h3><p class="hint">JPG, PNG, WebP, or GIF, up to 10 MB. Uploading places the photo online; then press Save to show it on the website.</p><div class="upload-row"><input id="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="secondary" id="up" type="button">Upload photo</button></div></div>
-      <div class="footer-actions"><button class="primary" id="save" type="button">Save changes</button><p id="status" aria-live="polite">Loading current content…</p></div>
+      <div class="history"><h3>Previous posts</h3><p class="history-copy">Up to four older posts are kept here, for a five-post total including the newest post.</p><div class="history-list" id="historyList"></div></div><div class="footer-actions"><button class="secondary" id="newPost" type="button">Create new post</button><button class="primary" id="save" type="button">Save changes</button><p id="status" aria-live="polite">Loading current content…</p></div>
     </section>
   </main>
   <script type="module">
@@ -55,17 +55,43 @@ export default function handler(req, res) {
     const get = (id) => document.getElementById(id);
     const status = get("status");
     let blog = {};
+    let blogPosts = [];
+    let creatingNew = false;
     function setStatus(message,kind) { status.textContent = message; status.dataset.kind = kind || ""; }
+    function readForm() {
+      const post = {};
+      for (const key of fields) post[key] = get(key).value.trim();
+      return post;
+    }
+    function fillForm(post) {
+      for (const key of fields) get(key).value = post?.[key] || "";
+    }
+    function renderHistory() {
+      const list = get("historyList");
+      const previous = blogPosts.slice(1, 5);
+      list.innerHTML = previous.length
+        ? previous.map((post, index) => '<div class="history-item"><b>' + (post.title || "Untitled post") + '</b><span>Previous post ' + (index + 1) + '</span></div>').join("")
+        : '<div class="history-item"><span>No previous posts yet. New posts will be saved here automatically.</span></div>';
+    }
     async function loadContent() {
       try {
         const response = await fetch("/content.json",{cache:"no-store"});
         if (!response.ok) throw new Error("Could not load the current content.");
         const content = await response.json();
-        blog = content.blog || {};
-        for (const key of fields) get(key).value = blog[key] || "";
-        setStatus("Current content loaded.","success");
+        const current = content.blog || {};
+        blogPosts = Array.isArray(current.posts) && current.posts.length ? current.posts : [current];
+        blog = blogPosts[0] || {};
+        fillForm(blog);
+        renderHistory();
+        setStatus("Current post loaded.","success");
       } catch (error) { setStatus("Error: " + error.message,"error"); }
     }
+    get("newPost").addEventListener("click", () => {
+      creatingNew = true;
+      fillForm({ eyebrow:"WILCO WELDING NEWS", button:"READ MORE" });
+      get("title").focus();
+      setStatus("New post ready. Add your details, then press Save changes.","success");
+    });
     get("up").addEventListener("click",async () => {
       const file = get("file").files[0];
       if (!file) return setStatus("Choose a photo before uploading.","error");
@@ -80,12 +106,19 @@ export default function handler(req, res) {
     });
     get("save").addEventListener("click",async () => {
       const button = get("save"); button.disabled = true;
-      for (const key of fields) blog[key] = get(key).value.trim();
+      blog = readForm();
+      if (creatingNew) {
+        blogPosts = [blog, ...blogPosts].slice(0, 5);
+      } else {
+        blogPosts = [blog, ...blogPosts.slice(1, 5)];
+      }
       setStatus("Saving changes…");
       try {
-        const response = await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({blog})});
+        const response = await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({blog,blogPosts})});
         const result = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(result.error || "Could not save your changes.");
+        creatingNew = false;
+        renderHistory();
         setStatus("Saved! Your website has been updated.","success");
       } catch (error) { setStatus("Save error: " + error.message,"error"); }
       finally { button.disabled = false; }
