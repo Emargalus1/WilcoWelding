@@ -11,6 +11,10 @@
     {
       "source": "/hero-admin",
       "destination": "/api/hero-admin"
+    },
+    {
+      "source": "/events-admin",
+      "destination": "/api/events-admin"
     }
   ]
 }
