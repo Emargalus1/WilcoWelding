@@ -80,7 +80,7 @@ export default async function handler(req, res) {
       const suppliedPosts = Array.isArray(blogPosts)
         ? blogPosts.map(cleanPost).filter((post) =>
             post.title || post.description || post.image
-          ).slice(0, 5)
+          )
         : [];
 
       const existingPosts = Array.isArray(content.blog?.posts)
@@ -89,7 +89,7 @@ export default async function handler(req, res) {
 
       const posts = suppliedPosts.length
         ? suppliedPosts
-        : [latestPost, ...existingPosts.slice(1)].slice(0, 5);
+        : [latestPost, ...existingPosts.slice(1)];
 
       content.blog = {
         ...content.blog,
