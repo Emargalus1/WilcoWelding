@@ -31,6 +31,10 @@
     {
       "source": "/page-heroes-admin",
       "destination": "/api/page-heroes-admin"
+    },
+    {
+      "source": "/wilco-admin",
+      "destination": "/api/wilco-admin"
     }
   ]
 }
