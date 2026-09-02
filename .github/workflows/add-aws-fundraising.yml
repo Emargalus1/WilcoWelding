@@ -1,0 +1,32 @@
+name: Add AWS fundraising events
+on:
+  push:
+    paths:
+      - '.github/workflows/add-aws-fundraising.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update AWS Student Chapter text
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('aws.html')
+          s=p.read_text(encoding='utf-8')
+          old='career exploration, community projects, competitions, and networking with welding professionals and employers.'
+          new='career exploration, community projects, fundraising events, competitions, and networking with welding professionals and employers.'
+          if old in s:
+              s=s.replace(old,new,1)
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          if git diff --quiet -- aws.html; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aws.html
+          git commit -m "Add fundraising events to AWS Student Chapter"
+          git push
