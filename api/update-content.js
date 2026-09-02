@@ -32,8 +32,9 @@ export default async function handler(req, res) {
     const resources = body?.resources;
     const pageHeroes = body?.pageHeroes;
     const awsHero = body?.awsHero;
+    const wilco = body?.wilco;
 
-    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero) {
+    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero && !wilco) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
@@ -155,6 +156,47 @@ export default async function handler(req, res) {
         ])
         .filter(([title, date]) => title || date)
         .slice(0, 20);
+    }
+
+    if (wilco) {
+      const cleanLines = (value, fallback = []) =>
+        Array.isArray(value)
+          ? value.map((item) => String(item || "").trim()).filter(Boolean).slice(0, 60)
+          : fallback;
+      const existingWilco = content.wilco || {};
+      const cleanSection = (incoming, previous = {}) => ({
+        title: String(incoming?.title || previous?.title || "").trim(),
+        description: String(incoming?.description || previous?.description || "").trim(),
+        link: String(incoming?.link || previous?.link || "").trim()
+      });
+      content.wilco = {
+        hero: {
+          eyebrow: String(wilco.hero?.eyebrow || existingWilco.hero?.eyebrow || "").trim(),
+          title: String(wilco.hero?.title || existingWilco.hero?.title || "").trim(),
+          image: String(wilco.hero?.image || existingWilco.hero?.image || "").trim()
+        },
+        about: cleanSection(wilco.about, existingWilco.about),
+        programs: cleanLines(wilco.programs, existingWilco.programs || []),
+        scholarship: cleanSection(wilco.scholarship, existingWilco.scholarship),
+        handbook: cleanSection(wilco.handbook, existingWilco.handbook),
+        schools: {
+          ...cleanSection(wilco.schools, existingWilco.schools),
+          items: cleanLines(wilco.schools?.items, existingWilco.schools?.items || [])
+        },
+        contact: {
+          title: String(wilco.contact?.title || existingWilco.contact?.title || "").trim(),
+          address: String(wilco.contact?.address || existingWilco.contact?.address || "").trim(),
+          phone: String(wilco.contact?.phone || existingWilco.contact?.phone || "").trim(),
+          hours: String(wilco.contact?.hours || existingWilco.contact?.hours || "").trim(),
+          link: String(wilco.contact?.link || existingWilco.contact?.link || "").trim()
+        },
+        media: {
+          title: String(wilco.media?.title || existingWilco.media?.title || "").trim(),
+          description: String(wilco.media?.description || existingWilco.media?.description || "").trim(),
+          facebook: String(wilco.media?.facebook || existingWilco.media?.facebook || "").trim(),
+          linkedin: String(wilco.media?.linkedin || existingWilco.media?.linkedin || "").trim()
+        }
+      };
     }
 
     if (awsHero) {
