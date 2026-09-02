@@ -15,4 +15,5 @@
 fetch("content.json",{cache:"no-store"}).then(r=>r.ok?r.json():{}).then(content=>{const links=[content.resources?.syllabi?.welding1||"#",content.resources?.syllabi?.welding2||"#"];document.querySelectorAll("[data-syllabus]").forEach((link,index)=>{link.href=links[index];link.setAttribute("aria-disabled",String(links[index]==="#"));})}).catch(()=>{});
 </script>
 <footer class="footer">© Wilco Welding Program · <a href="student-resources.html">Student Resources</a></footer>
+<div class="site-credit" style="text-align:center;padding:12px 16px 18px;font-size:12px;color:#6b7280;">All work and design was made by Evan Margalus</div>
 </body></html>
