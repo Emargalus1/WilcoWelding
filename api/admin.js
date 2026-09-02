@@ -43,7 +43,7 @@ export default function handler(req, res) {
         <div class="field"><label for="button">Button text</label><input id="button" placeholder="Example: Get a quote"></div>
         <div class="field wide"><label for="title">Main heading</label><input id="title" placeholder="Your main homepage message"></div>
         <div class="field wide"><label for="description">Description</label><textarea id="description" placeholder="Tell visitors about your work."></textarea></div>
-        <div class="field wide"><label for="image">Photo web address</label><input id="image" type="url" placeholder="This fills in after a photo upload."><p class="hint">You can paste an image address, or upload a photo below.</p></div>
+        <div class="field wide"><label for="image">Photo web address</label><input id="image" type="url" placeholder="This fills in after a photo upload."><p class="hint">You can paste an image address, or upload a photo below.</p></div><div class="field"><label for="eventDate">Event date (optional)</label><input id="eventDate" type="date"><p class="hint">Add a date to automatically include this post in Upcoming Events.</p></div>
       </div>
       <div class="upload-box"><h3>Upload a photo</h3><p class="hint">JPG, PNG, WebP, or GIF, up to 10 MB. Uploading places the photo online; then press Save to show it on the website.</p><div class="upload-row"><input id="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="secondary" id="up" type="button">Upload photo</button></div></div>
       <div class="history"><h3>Saved posts</h3><p class="history-copy">Every post is saved. The newest five appear on the Blog page; older posts remain available in the <a href="/blog-archive.html" target="_blank" rel="noopener noreferrer">Blog Archive ↗</a>.</p><div class="history-list" id="historyList"></div></div><div class="footer-actions"><button class="secondary" id="newPost" type="button">Create new post</button><button class="primary" id="save" type="button">Save changes</button><p id="status" aria-live="polite">Loading current content…</p></div>
@@ -51,7 +51,7 @@ export default function handler(req, res) {
   </main>
   <script type="module">
     import { upload } from "https://esm.sh/@vercel/blob@2.0.0/client";
-    const fields = ["eyebrow","title","description","button","image"];
+    const fields = ["eyebrow","title","description","button","image","eventDate"];
     const get = (id) => document.getElementById(id);
     const status = get("status");
     let blog = {};
