@@ -5,12 +5,19 @@ export default function handler(req, res) {
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.status(200).send(String.raw`<!doctype html>
 <html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
-<title>AWS Hero Admin</title>
+<title>AWS Admin | Wilco Welding</title>
 <style>
-body{margin:0;background:#f4f6f9;font:16px system-ui;color:#172031}.bar{background:#111827;color:#fff;padding:20px}.wrap{max-width:800px;margin:32px auto;padding:0 18px}.card,.slide{background:#fff;border:1px solid #d8dee8;border-radius:14px;padding:28px}.slide{margin-top:14px;padding:18px;background:#fbfcfe}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}label{display:block;font-weight:700;margin:16px 0 7px}input{box-sizing:border-box;width:100%;padding:11px;border:1px solid #b9c2d0;border-radius:8px;font:inherit}button{margin-top:18px;padding:11px 16px;border:0;border-radius:8px;font-weight:800;cursor:pointer;background:#d97706;color:#fff}.secondary{background:#e8edf3;color:#172031;margin-left:8px}.remove{background:#fee2e2;color:#991b1b;margin:0}.upload{margin-top:10px}.preview{display:none;max-width:220px;max-height:125px;object-fit:cover;border-radius:7px;margin-top:12px}#status{margin-left:12px}.help{color:#596579;line-height:1.45}
+body{margin:0;background:#f4f6f9;font:16px system-ui;color:#172031}.bar{background:#111827;color:#fff;padding:20px}.wrap{max-width:800px;margin:32px auto;padding:0 18px}.card,.slide{background:#fff;border:1px solid #d8dee8;border-radius:14px;padding:28px}.slide{margin-top:14px;padding:18px;background:#fbfcfe}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}label{display:block;font-weight:700;margin:16px 0 7px}input{box-sizing:border-box;width:100%;padding:11px;border:1px solid #b9c2d0;border-radius:8px;font:inherit}button,.btn{display:inline-block;margin-top:18px;padding:11px 16px;border:0;border-radius:8px;font-weight:800;cursor:pointer;background:#d97706;color:#fff;text-decoration:none}.secondary{background:#e8edf3;color:#172031;margin-left:8px}.remove{background:#fee2e2;color:#991b1b;margin:0}.upload{margin-top:10px}.preview{display:none;max-width:220px;max-height:125px;object-fit:cover;border-radius:7px;margin-top:12px}#status{margin-left:12px}.help{color:#596579;line-height:1.45}.text-editor{margin-bottom:18px;border:2px solid #d97706}.text-editor h1{margin-top:0}.text-editor .btn{margin:8px 8px 0 0}.text-editor .primary-link{background:#d97706;color:#fff}.text-editor .secondary-link{background:#111827;color:#fff}@media(max-width:620px){.secondary{margin-left:0}.text-editor .btn{display:block;width:100%;box-sizing:border-box;text-align:center;margin-right:0}}
 </style>
-<div class="bar"><b>Wilco Welding Admin</b> · AWS hero photos</div>
-<main class="wrap"><a href="/admin">← Back to blog editor</a><section class="card">
+<div class="bar"><b>Wilco Welding Admin</b> · AWS page</div>
+<main class="wrap"><a href="/admin">← Back to Admin Hub</a>
+<section class="card text-editor">
+<h1>Edit AWS Page Text & Pictures</h1>
+<p class="help">Use the full AWS page editor to change headings, paragraphs, committee names and titles, links, buttons, and pictures anywhere on the AWS page.</p>
+<a class="btn primary-link" href="/page-admin?page=aws.html">EDIT AWS PAGE TEXT & PICTURES</a>
+<a class="btn secondary-link" href="/aws.html" target="_blank" rel="noopener">OPEN AWS PAGE ↗</a>
+</section>
+<section class="card">
 <h1>AWS Hero Slideshow</h1><p class="help">Add up to eight AWS photos. They will rotate automatically on the AWS page, and visitors can use the arrows. Removing every uploaded photo restores the AWS headquarters photo.</p>
 <div id="slides"></div><button id="add" class="secondary" type="button">+ Add another photo</button><br><button id="save" type="button">Save Changes</button><span id="status"></span>
 </section></main>
