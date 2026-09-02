@@ -31,8 +31,9 @@ export default async function handler(req, res) {
     const partners = body?.partners;
     const resources = body?.resources;
     const pageHeroes = body?.pageHeroes;
+    const awsHero = body?.awsHero;
 
-    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes) {
+    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
@@ -153,6 +154,15 @@ export default async function handler(req, res) {
         ])
         .filter(([title, date]) => title || date)
         .slice(0, 20);
+    }
+
+    if (awsHero) {
+      content.awsHero = {
+        ...content.awsHero,
+        slides: Array.isArray(awsHero.slides)
+          ? awsHero.slides.map((url) => String(url || "").trim()).filter(Boolean).slice(0, 8)
+          : (Array.isArray(content.awsHero?.slides) ? content.awsHero.slides : [])
+      };
     }
 
     if (hero) {
