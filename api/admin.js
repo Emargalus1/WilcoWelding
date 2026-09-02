@@ -33,9 +33,9 @@ export default function handler(req, res) {
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="topbar-inner"><div class="mark">W</div><div><h1>Wilco Welding Admin</h1><p>Publish and manage your recent blog posts.</p></div></div></header>
+  <header class="topbar"><div class="topbar-inner"><div class="mark">W</div><div><h1>Wilco Welding Admin</h1><p>Publish new posts and keep your complete blog history.</p></div></div></header>
   <main>
-    <div class="intro"><h2>Blog posts</h2><p>Publish a new post or update the newest post. Your most recent five posts are kept in the website history.</p></div>
+    <div class="intro"><h2>Blog posts</h2><p>Publish a new post or update the newest post. Every post is saved. The newest five appear on the Blog page, and the full history is available in the Blog Archive.</p></div>
     <section class="card">
       <h3 class="section-title">Current blog post</h3><p class="section-copy">The newest post is featured on the Home page. Older posts remain below it.</p>
       <div class="grid">
@@ -46,7 +46,7 @@ export default function handler(req, res) {
         <div class="field wide"><label for="image">Photo web address</label><input id="image" type="url" placeholder="This fills in after a photo upload."><p class="hint">You can paste an image address, or upload a photo below.</p></div>
       </div>
       <div class="upload-box"><h3>Upload a photo</h3><p class="hint">JPG, PNG, WebP, or GIF, up to 10 MB. Uploading places the photo online; then press Save to show it on the website.</p><div class="upload-row"><input id="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="secondary" id="up" type="button">Upload photo</button></div></div>
-      <div class="history"><h3>Previous posts</h3><p class="history-copy">Up to four older posts are kept here, for a five-post total including the newest post.</p><div class="history-list" id="historyList"></div></div><div class="footer-actions"><button class="secondary" id="newPost" type="button">Create new post</button><button class="primary" id="save" type="button">Save changes</button><p id="status" aria-live="polite">Loading current content…</p></div>
+      <div class="history"><h3>Saved posts</h3><p class="history-copy">Every post is saved. The newest five appear on the Blog page; older posts remain available in the <a href="/blog-archive.html" target="_blank" rel="noopener noreferrer">Blog Archive ↗</a>.</p><div class="history-list" id="historyList"></div></div><div class="footer-actions"><button class="secondary" id="newPost" type="button">Create new post</button><button class="primary" id="save" type="button">Save changes</button><p id="status" aria-live="polite">Loading current content…</p></div>
     </section>
   </main>
   <script type="module">
@@ -68,7 +68,7 @@ export default function handler(req, res) {
     }
     function renderHistory() {
       const list = get("historyList");
-      const previous = blogPosts.slice(1, 5);
+      const previous = blogPosts.slice(1);
       list.innerHTML = previous.length
         ? previous.map((post, index) => '<div class="history-item"><b>' + (post.title || "Untitled post") + '</b><span>Previous post ' + (index + 1) + '</span></div>').join("")
         : '<div class="history-item"><span>No previous posts yet. New posts will be saved here automatically.</span></div>';
@@ -108,9 +108,9 @@ export default function handler(req, res) {
       const button = get("save"); button.disabled = true;
       blog = readForm();
       if (creatingNew) {
-        blogPosts = [blog, ...blogPosts].slice(0, 5);
+        blogPosts = [blog, ...blogPosts];
       } else {
-        blogPosts = [blog, ...blogPosts.slice(1, 5)];
+        blogPosts = [blog, ...blogPosts.slice(1)];
       }
       setStatus("Saving changes…");
       try {
