@@ -1,0 +1,55 @@
+name: Move AWS Student Chapter section
+
+on:
+  push:
+    paths:
+      - '.github/workflows/move-aws-student-chapter-section.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-page:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Move student chapter section above About AWS
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('aws.html')
+          text = path.read_text(encoding='utf-8')
+
+          start = text.find('<section class="student-chapter">')
+          if start == -1:
+              raise SystemExit('Student chapter section not found')
+
+          end = text.find('</section>', start)
+          if end == -1:
+              raise SystemExit('Student chapter section end not found')
+          end += len('</section>')
+
+          section = text[start:end]
+          text = text[:start] + text[end:]
+
+          about = text.find('<section class="about-aws">')
+          if about == -1:
+              raise SystemExit('About AWS section not found')
+
+          text = text[:about] + section + text[about:]
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit update
+        run: |
+          if git diff --quiet -- aws.html; then
+            echo "No change needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "418982+github-actions[bot]@users.noreply.github.com"
+          git add aws.html
+          git commit -m "Move AWS Student Chapter section above About AWS"
+          git push
