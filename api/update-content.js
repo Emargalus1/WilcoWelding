@@ -73,6 +73,7 @@ export default async function handler(req, res) {
         description: String(post?.description || ""),
         button: String(post?.button || ""),
         image: String(post?.image || ""),
+        eventDate: String(post?.eventDate || "").trim(),
         link: String(post?.link || "#")
       });
 
