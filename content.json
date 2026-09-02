@@ -14,13 +14,21 @@
     ]
   },
   "blog": {
-    "eyebrow": "Wilco Welding",
-    "title": "Wilco Welding New Website",
-    "description": "The Wilco Welding Department is committed to highlighting the opportunities, resources, and industry connections available through our program. Our website will serve as a central resource for information about the welding program, student support services, the AWS Student Chapter, and our partnerships with industry professionals and employers.",
-    "button": "View More",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco_Welding_Logo-KNIrx8Q1MMpyVKxuuzZowEYj1rAnkw.jpg",
+    "eyebrow": "WILCO WELDING NEWS",
+    "title": "AWS Student Chapter Election",
+    "description": "AWS Student Chapter Election for 2026-2027 the new committe members are \nAWS CHAIR - Anthony Campos, AWS VICE - CHAIR - Matt Herrera, AWS Secretary - Brandon Larson, AWS Treasurer - Mike Basile, AWS Sponsorship Committee Chair - Ashley Hobbs, AWS Sponsorship Committee Vice - Chair - Logan Beutel, AWS Media Committee Chair - Rylee Rodriguez, AWS Media Committee Vice Chair - Ashley Hobbs.",
+    "button": "READ MORE",
+    "image": "",
     "link": "#",
     "posts": [
+      {
+        "eyebrow": "WILCO WELDING NEWS",
+        "title": "AWS Student Chapter Election",
+        "description": "AWS Student Chapter Election for 2026-2027 the new committe members are \nAWS CHAIR - Anthony Campos, AWS VICE - CHAIR - Matt Herrera, AWS Secretary - Brandon Larson, AWS Treasurer - Mike Basile, AWS Sponsorship Committee Chair - Ashley Hobbs, AWS Sponsorship Committee Vice - Chair - Logan Beutel, AWS Media Committee Chair - Rylee Rodriguez, AWS Media Committee Vice Chair - Ashley Hobbs.",
+        "button": "READ MORE",
+        "image": "",
+        "link": "#"
+      },
       {
         "eyebrow": "Wilco Welding",
         "title": "Wilco Welding New Website",
