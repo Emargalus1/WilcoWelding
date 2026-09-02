@@ -61,7 +61,7 @@ let uploadedUrl = "";
 
 function setStatus(message, kind="") { status.textContent = message; status.className = "status " + kind; }
 function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
-function escapeRegExp(value){return value.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+function escapeRegExp(value){return value.replace(/[.*+?^$()|[\]\\]/g,"\\$&").replace(/\{/g,"\\{").replace(/\}/g,"\\}");}
 function pageFromUrl(){const p=new URLSearchParams(location.search).get("page");return pages.some(([,f])=>f===p)?p:"index.html";}
 
 pages.forEach(([label,file])=>{const o=document.createElement("option");o.value=file;o.textContent=label+" — "+file;pageSelect.appendChild(o);});
