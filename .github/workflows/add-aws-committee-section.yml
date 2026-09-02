@@ -1,0 +1,56 @@
+name: Add AWS committee section
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-aws-committee-section.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-page:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add 2026-2027 committee section
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('aws.html')
+          text = path.read_text(encoding='utf-8')
+
+          if '2026–2027 AWS STUDENT CHAPTER COMMITTEE' in text or '2026-2027 AWS STUDENT CHAPTER COMMITTEE' in text:
+              raise SystemExit('Committee section already exists')
+
+          css_marker = '.student-chapter strong{color:var(--ink)}'
+          css_add = css_marker + '.chapter-committee{max-width:880px;background:#fff;border:1px solid #e0e5eb;border-radius:9px;padding:30px;margin:0 0 34px}.chapter-committee h2{font-size:34px;margin:0 0 10px}.chapter-committee p{margin:0;color:#4b5563;line-height:1.65}'
+          if css_marker in text and '.chapter-committee{' not in text:
+              text = text.replace(css_marker, css_add, 1)
+
+          start = text.find('<section class="student-chapter">')
+          if start == -1:
+              raise SystemExit('Student chapter section not found')
+          end = text.find('</section>', start)
+          if end == -1:
+              raise SystemExit('Student chapter section end not found')
+          end += len('</section>')
+
+          section = '<section class="chapter-committee"><h2>2026–2027 AWS STUDENT CHAPTER COMMITTEE</h2><p>Committee member names and positions will be posted here once the 2026–2027 Wilco Welding AWS Student Chapter committee is finalized.</p></section>'
+          text = text[:end] + section + text[end:]
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit update
+        run: |
+          if git diff --quiet -- aws.html; then
+            echo "No change needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aws.html
+          git commit -m "Add 2026-2027 AWS committee section"
+          git push
