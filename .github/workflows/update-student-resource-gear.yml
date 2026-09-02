@@ -1,0 +1,45 @@
+name: Update student gear resource
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-student-resource-gear.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-resource:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update gear and equipment resource
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('content.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          cards = data['resources']['cards']
+          for card in cards:
+              if card.get('title') == 'SAFETY & PPE':
+                  card['title'] = 'GEAR & EQUIPMENT'
+                  card['description'] = 'Find information and recommended websites for purchasing welding gear, protective clothing, tools, and equipment needed for class and shop work.'
+                  card['action'] = 'VIEW GEAR & EQUIPMENT →'
+                  card['link'] = 'index.html#contact'
+                  break
+          else:
+              raise SystemExit('SAFETY & PPE card not found')
+          path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          PY
+      - name: Commit update
+        run: |
+          if git diff --quiet -- content.json; then
+            echo "No change needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content.json
+          git commit -m "Replace Safety and PPE with gear and equipment resource"
+          git push
