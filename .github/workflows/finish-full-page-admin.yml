@@ -1,0 +1,49 @@
+name: Finish full page admin
+
+on:
+  push:
+    paths:
+      - '.github/workflows/finish-full-page-admin.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finish-admin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix editor and add Admin Hub link
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          page = Path('api/page-admin.js')
+          text = page.read_text(encoding='utf-8')
+          old = 'function escapeRegExp(value){return value.replace(/[.*+?^${}()|[\\]\\\\]/g,"\\\\$&");}'
+          new = 'function escapeRegExp(value){return value.replace(/[.*+?^$()|[\\]\\\\]/g,"\\\\$&").replace(/\\{/g,"\\\\{").replace(/\\}/g,"\\\\}");}'
+          if old not in text:
+              raise SystemExit('escapeRegExp marker not found')
+          page.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          admin = Path('api/admin.js')
+          text = admin.read_text(encoding='utf-8')
+          old = '<a class="hub-link" href="/page-heroes-admin">PAGE HEROES</a>'
+          new = old + '<a class="hub-link" href="/page-admin">ALL PAGES — TEXT &amp; PICTURES</a>'
+          if old not in text:
+              raise SystemExit('Admin Hub marker not found')
+          if '/page-admin' not in text:
+              text = text.replace(old, new, 1)
+          admin.write_text(text, encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add api/page-admin.js api/admin.js
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git commit -m "Finish full page admin editor"
+          git push
