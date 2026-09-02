@@ -168,11 +168,24 @@ async function start() {
         .join("");
     }
 
-    // Upcoming events
+    // Upcoming events — blog posts with an event date are included automatically.
     const eventRows = document.querySelector("#eventRows");
 
-    if (eventRows && Array.isArray(d.events)) {
-      eventRows.innerHTML = d.events
+    if (eventRows) {
+      const formatEventDate = (value) => {
+        if (!value) return "";
+        const date = new Date(String(value) + "T12:00:00");
+        return Number.isNaN(date.getTime())
+          ? String(value)
+          : date.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+      };
+      const blogEvents = Array.isArray(d.blog?.posts)
+        ? d.blog.posts
+            .filter((post) => post?.eventDate)
+            .map((post) => [post.title || "Untitled event", formatEventDate(post.eventDate)])
+        : [];
+      const events = [...blogEvents, ...(Array.isArray(d.events) ? d.events : [])];
+      eventRows.innerHTML = events
         .map(
           (x) => `
             <div class="eventrow">
