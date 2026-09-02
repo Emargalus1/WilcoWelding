@@ -175,5 +175,13 @@
       "description": "",
       "image": "hero-welding.jpg"
     }
+  },
+  "awsHero": {
+    "slides": [
+      "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/aws-aws%20hq-uSWeVX4Ol2pfREVbUuz50piGw9jjiT.jpg",
+      "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/aws-group%20pic-oNz2IhzUXfMt8MQahHIEFyI8fJO6vr.jpg",
+      "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/aws-IMG_5464-Ng3LPULqm3e2IWZ8tDCm1fbF47orCk.jpg",
+      "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/aws-IMG_2016-jXVZEzn7xtyZ0fwisCf49BCFDFyPLZ.jpg"
+    ]
   }
 }
