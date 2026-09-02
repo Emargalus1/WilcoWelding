@@ -1,4 +1,4 @@
-import { requireAdmin } from "./auth.js";
+import { requireAdmin } from "../lib/auth.js";
 
 export default function handler(req, res) {
   if (!requireAdmin(req, res)) return;

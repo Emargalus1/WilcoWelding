@@ -1,5 +1,5 @@
 import { handleUpload } from "@vercel/blob/client";
-import { requireAdmin, validAdminToken } from "./auth.js";
+import { requireAdmin, validAdminToken } from "../lib/auth.js";
 
 function payload(req) {
   try { return (typeof req.body === "string" ? JSON.parse(req.body) : req.body)?.clientPayload || ""; } catch { return ""; }

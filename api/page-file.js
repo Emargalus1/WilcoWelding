@@ -1,4 +1,4 @@
-import { requireAdmin } from "./auth.js";
+import { requireAdmin } from "../lib/auth.js";
 
 const ALLOWED_PAGES = new Set([
   "index.html",
