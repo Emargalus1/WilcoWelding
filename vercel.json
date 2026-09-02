@@ -35,6 +35,14 @@
     {
       "source": "/wilco-admin",
       "destination": "/api/wilco-admin"
+    },
+    {
+      "source": "/page-admin",
+      "destination": "/api/page-admin"
+    },
+    {
+      "source": "/page-file",
+      "destination": "/api/page-file"
     }
   ]
 }
