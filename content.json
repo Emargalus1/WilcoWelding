@@ -101,27 +101,33 @@
   "partners": [
     {
       "name": "Chicago Pipefitters Local 597",
-      "image": "partner-597.png"
+      "image": "partner-597.png",
+      "link": "https://www.pf597.org/"
     },
     {
       "name": "Dump It Junk Removal Service LLC.",
-      "image": "partner-dump-it.png"
+      "image": "partner-dump-it.png",
+      "link": "https://dumpitjunkremoval.net"
     },
     {
       "name": "Bulldog Derby Parts",
-      "image": "partner-bulldog.png"
+      "image": "partner-bulldog.png",
+      "link": "https://www.bulldogderbyparts.com"
     },
     {
       "name": "Metropolitan Industries, Inc.",
-      "image": "partner-metropolitan.png"
+      "image": "partner-metropolitan.png",
+      "link": "https://metropolitanind.com"
     },
     {
       "name": "Iron Workers Local 444",
-      "image": "partner-444.png"
+      "image": "partner-444.png",
+      "link": "https://www.ironworkers444.com/en"
     },
     {
       "name": "Joliet Junior College",
-      "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/jjc-Ns7f8vXhi0FsqtL3SqVgytg318JFlB.png"
+      "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/jjc-Ns7f8vXhi0FsqtL3SqVgytg318JFlB.png",
+      "link": "https://go.jjc.edu/college?utm_term=colleges%20and%20universities&utm_source=adwords&utm_medium=ppc&utm_campaign=Fall+2026+-+SEARCH+Campaign&hsa_net=adwords&hsa_grp=196501307726&hsa_mt=b&hsa_tgt=kwd-11164180&hsa_kw=colleges%20and%20universities&hsa_src=g&hsa_acc=4427694014&hsa_cam=22756191780&hsa_ver=3&hsa_ad=813866563428&gad_source=1&gad_campaignid=23963550360&gbraid=0AAAAADiPh6wjLkWPrzGlRMO1tssnNEb3e&gclid=Cj0KCQjwteTUBhD4ARIsAEYjs3opLDbeiFf8JeiRpavAEO9G7Qk44VAT-tfU707EAtllDfbwiOk2kf8aAhGOEALw_wcB"
     }
   ],
   "resources": {
