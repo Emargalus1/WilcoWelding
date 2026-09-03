@@ -219,7 +219,19 @@ async function start() {
           card.textContent = partner?.name || "Partner";
         }
 
-        partnerLogos.appendChild(card);
+        if (partner?.link) {
+          const link = document.createElement("a");
+          link.href = partner.link;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.title = "Visit " + (partner.name || "partner website");
+          link.style.display = "block";
+          link.style.textDecoration = "none";
+          link.appendChild(card);
+          partnerLogos.appendChild(link);
+        } else {
+          partnerLogos.appendChild(card);
+        }
       });
     }
 
