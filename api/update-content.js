@@ -142,7 +142,8 @@ export default async function handler(req, res) {
       content.partners = partners
         .map((partner) => ({
           name: String(partner?.name || "").trim(),
-          image: String(partner?.image || "").trim()
+          image: String(partner?.image || "").trim(),
+          link: String(partner?.link || "").trim()
         }))
         .filter((partner) => partner.name || partner.image)
         .slice(0, 30);
