@@ -1,17 +1,9 @@
 import { requireAdmin } from "../lib/auth.js";
 
 const ALLOWED_PAGES = new Set([
-  "index.html",
-  "welding-program.html",
-  "student-resources.html",
-  "aws.html",
-  "wilco-area-career-center.html",
-  "employers-partners.html",
-  "blog.html",
-  "blog-archive.html",
-  "events.html",
-  "contact.html",
-  "syllabi.html"
+  "index.html","welding-program.html","student-resources.html","aws.html",
+  "wilco-area-career-center.html","employers-partners.html","blog.html",
+  "blog-archive.html","events.html","contact.html","syllabi.html"
 ]);
 
 function githubHeaders(token) {
@@ -37,7 +29,7 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === "GET") {
-      const response = await fetch(githubUrl, { headers });
+      const response = await fetch(githubUrl, { headers, cache: "no-store" });
       const file = await response.json();
       if (!response.ok) return res.status(response.status).json({ error: "Could not load the page from GitHub." });
       const html = Buffer.from(file.content, "base64").toString("utf8");
@@ -46,11 +38,16 @@ export default async function handler(req, res) {
 
     if (req.method === "POST") {
       const html = String(req.body?.html || "");
+      const loadedSha = String(req.body?.sha || "").trim();
       if (!html || html.length < 100) return res.status(400).json({ error: "The page content is empty or incomplete." });
+      if (!/^[a-f0-9]{40}$/i.test(loadedSha)) return res.status(400).json({ error: "Reload this page before saving. Its revision is missing." });
 
-      const currentResponse = await fetch(githubUrl, { headers });
+      const currentResponse = await fetch(githubUrl, { headers, cache: "no-store" });
       const currentFile = await currentResponse.json();
       if (!currentResponse.ok) return res.status(currentResponse.status).json({ error: "Could not read the current page from GitHub." });
+      if (currentFile.sha !== loadedSha) {
+        return res.status(409).json({ error: "This page changed after you loaded it. Reload it before saving so newer work is not overwritten.", currentSha: currentFile.sha });
+      }
 
       const updateResponse = await fetch(githubUrl.replace("?ref=main", ""), {
         method: "PUT",
@@ -58,13 +55,13 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           message: `Update ${page} from full page admin`,
           content: Buffer.from(html, "utf8").toString("base64"),
-          sha: currentFile.sha,
+          sha: loadedSha,
           branch: "main"
         })
       });
       const result = await updateResponse.json();
       if (!updateResponse.ok) return res.status(updateResponse.status).json({ error: result?.message || "GitHub could not save the page." });
-      return res.status(200).json({ success: true, commit: result.commit?.sha || null });
+      return res.status(200).json({ success: true, commit: result.commit?.sha || null, sha: result.content?.sha || null });
     }
 
     return res.status(405).json({ error: "Method not allowed" });
