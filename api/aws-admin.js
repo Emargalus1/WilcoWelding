@@ -34,7 +34,7 @@ function addSlide(value=""){
  card.querySelector(".upload").onclick=async()=>{const selected=file.files[0];if(!selected)return s("Choose a photo first.");s("Uploading…");try{const result=await upload("uploads/aws-"+selected.name,selected,{access:"public",handleUploadUrl:"/api/upload"});url.value=result.url;refresh();s("Uploaded — save when ready.");}catch(error){s("Upload error: "+error.message);}};
  g("slides").appendChild(card);
 }
-try{const data=await (await fetch("/content.json",{cache:"no-store"})).json();const slides=Array.isArray(data.awsHero?.slides)?data.awsHero.slides:[];slides.forEach(addSlide);if(!slides.length)addSlide();s("Loaded");}catch(error){addSlide();s(error.message);}
+try{const data=await (await fetch("/api/update-content",{cache:"no-store"})).json();const slides=Array.isArray(data.awsHero?.slides)?data.awsHero.slides:[];slides.forEach(addSlide);if(!slides.length)addSlide();s("Loaded");}catch(error){addSlide();s(error.message);}
 g("add").onclick=()=>{if(g("slides").children.length<8)addSlide();else s("You can add up to eight photos.");};
 g("save").onclick=async()=>{const slides=Array.from(document.querySelectorAll("[data-url]")).map(input=>input.value.trim()).filter(Boolean).slice(0,8);s("Saving…");try{const response=await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({awsHero:{slides}})});if(!response.ok){const data=await response.json().catch(()=>({}));throw new Error(data.error||"Save failed.");}s("Saved! Your AWS slideshow is updated.");}catch(error){s(error.message);}};
 </script>`);

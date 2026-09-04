@@ -78,6 +78,7 @@ function extractQuickFields(){
   const textRegex = /<(h[1-6]|p|button|a|li|label|small|strong|em|span)([^>]*)>([^<>]{1,500})<\/\1>/gi;
   let m; let index=0;
   while((m=textRegex.exec(html))){
+    if(/\bdata-c\s*=/.test(m[2])) continue;
     const value=m[3];
     const plain=value.replace(/&nbsp;/g," ").trim();
     if(!plain || /^https?:\/\//i.test(plain)) continue;

@@ -85,9 +85,9 @@ export default function handler(req, res) {
     }
     async function loadContent() {
       try {
-        const response = await fetch("/content.json",{cache:"no-store"});
+        const response = await fetch("/api/update-content",{cache:"no-store"});
         if (!response.ok) throw new Error("Could not load the current content.");
-        const content = await response.json();
+        const content = await response.json(); window.__contentSha=content.__sha||"";
         const current = content.blog || {};
         blogPosts = Array.isArray(current.posts) && current.posts.length ? current.posts : [current];
         blog = blogPosts[0] || {};
@@ -123,12 +123,12 @@ export default function handler(req, res) {
       const nextPosts = creatingNew ? [nextBlog, ...blogPosts] : [nextBlog, ...blogPosts.slice(1)];
       setStatus("Saving changes…");
       try {
-        const response = await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({blog:nextBlog,blogPosts:nextPosts})});
+        const response = await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sha:window.__contentSha,blog:nextBlog,blogPosts:nextPosts})});
         const result = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(result.error || "Could not save your changes.");
         blog=nextBlog; blogPosts=nextPosts; creatingNew = false;
         renderHistory();
-        setStatus("Saved! Your website has been updated.","success");
+        setStatus("Saved to GitHub. Vercel is deploying the change.","success");
       } catch (error) { setStatus("Save error: " + error.message,"error"); }
       finally { button.disabled = false; }
     });
