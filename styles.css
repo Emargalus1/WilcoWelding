@@ -36,8 +36,8 @@ nav a.active,nav a:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
 .panel h2{font-size:27px}.panel .underline{margin-bottom:6px}
 .events-only{min-height:213px}
 .newsrow{display:flex;justify-content:space-between;font-size:13px;font-weight:700;padding:8px 0;border-bottom:1px solid #ddd}.newsrow span:last-child{font-weight:400}
-.eventrow{display:grid;grid-template-columns:36px 1fr;gap:5px;padding:6px 0}.cal{color:var(--yellow);font-size:25px}.eventrow b{display:block;font-size:13px}.eventrow small{font-size:11px}
-.gold-link{position:absolute;bottom:10px;left:20px;color:#b78100;font-size:12px;font-weight:800;text-decoration:none}
+.eventrow{display:grid;grid-template-columns:36px 1fr;gap:5px;padding:6px 0}.cal{color:var(--yellow);font-size:25px}.eventrow b{display:block;font-size:13px}.eventrow small{font-size:12px;color:#4b4b4b}
+.gold-link{position:absolute;bottom:10px;left:20px;color:#7a5700;font-size:12px;font-weight:800;text-decoration:none}
 .partners img{width:100%;height:145px;object-fit:cover;object-position:center;margin-top:0}
 .partners .gold-link{bottom:10px}
 footer{background:#050505;color:#fff;margin-top:0}
@@ -191,3 +191,21 @@ footer{background:#050505;color:#fff;margin-top:0}
 
 /* White transparent logo asset */
 
+
+/* Review remediation: tablet navigation, phone carousel controls, focus, and contrast */
+:focus-visible{outline:3px solid #8a5f00;outline-offset:3px}
+.site-credit{color:#505050!important}
+@media(max-width:1180px){
+  .header{height:70px}.logo{width:210px;height:70px}.logo img{width:190px;height:66px}
+  .hamburger{display:block;margin-left:auto;background:none;border:0;color:#fff;font-size:28px;padding:15px;cursor:pointer}
+  .header-inner{padding-right:10px;position:relative}
+  nav{display:none;position:absolute;top:70px;left:0;right:0;background:#050505;flex-direction:column;align-items:stretch;padding:10px 20px;z-index:60;max-height:calc(100vh - 70px);overflow:auto}
+  nav.open{display:flex}nav a{height:45px;font-size:16px}
+}
+@media(max-width:520px){
+  .hero{height:auto;min-height:535px;padding-bottom:64px}
+  .hero-text{padding:72px 38px 20px}.hero p{width:auto;max-width:100%}
+  .hero .arrow{top:auto;bottom:12px;transform:none;font-size:42px;background:rgba(0,0,0,.58);width:48px;height:48px;border-radius:50%}
+  .hero .arrow.left{left:calc(50% - 62px)}.hero .arrow.right{right:calc(50% - 62px)}
+  .slider-dots{justify-content:center}
+}

@@ -3,7 +3,7 @@
     "eyebrow": "WILCO WELDING PROGRAM",
     "title": "START YOUR CAREER",
     "description": "Students will learn essential industry-standard fundamentals, including proper procedures, safe equipment operation, hazard identification, and best practices for maintaining a safe and professional work environment.",
-    "button": "EXPLORE THE PROGRAM →",
+    "button": "EXPLORE THE PROGRAM \u2192",
     "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/hero-welding-n69ZqAgnIY5lgvbNevUv3Tzz5MH3wB.jpg",
     "slides": [
       "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/hero-welding-n69ZqAgnIY5lgvbNevUv3Tzz5MH3wB.jpg",
@@ -41,7 +41,7 @@
   },
   "program": {
     "title": "WELDING PROGRAM",
-    "description": "The Wilco Welding Program is intended to prepare students for the requirements of an entry-level welding technician or apprenticeship in the Skilled Trades. Students will be oriented to a career pathway and begin developing Workplace Skills, Worksite Safety, Technical Knowledge, and Hands-On practice. Upon completion of the Program, a graduate should be able to obtain an apprenticeship or entry-level position in a Manufacturing, Fabrication or Building Trades sector.\n\nIn order to prepare students for their role as a Welding Technician, they will participate in in-depth classroom discussions of OSHA Safety Standards, Welding Terminology, Precision Measurements, Welding Symbols & Blueprint Reading, Industry Codes & Documents, Welding Equipment, Welding Theory, and workplace skills such as Continuing Education and Professional Development, résumé development, job searches, and interview practices.\n\nStudents will also participate in Shop Activities where they will learn how to use hand and power tools and welding equipment. Our lab curriculum covers Shielded Metal Arc Welding (SMAW), Gas Metal Arc Welding (GMAW), Oxy/Fuel Cutting (OFC), Plasma Arc Cutting (PAC), Air/Carbon Arc Gouging (CAG-A), brazing, and soldering.",
+    "description": "The Wilco Welding Program is intended to prepare students for the requirements of an entry-level welding technician or apprenticeship in the Skilled Trades. Students will be oriented to a career pathway and begin developing Workplace Skills, Worksite Safety, Technical Knowledge, and Hands-On practice. Upon completion of the Program, a graduate should be able to obtain an apprenticeship or entry-level position in a Manufacturing, Fabrication or Building Trades sector.\n\nIn order to prepare students for their role as a Welding Technician, they will participate in in-depth classroom discussions of OSHA Safety Standards, Welding Terminology, Precision Measurements, Welding Symbols & Blueprint Reading, Industry Codes & Documents, Welding Equipment, Welding Theory, and workplace skills such as Continuing Education and Professional Development, r\u00e9sum\u00e9 development, job searches, and interview practices.\n\nStudents will also participate in Shop Activities where they will learn how to use hand and power tools and welding equipment. Our lab curriculum covers Shielded Metal Arc Welding (SMAW), Gas Metal Arc Welding (GMAW), Oxy/Fuel Cutting (OFC), Plasma Arc Cutting (PAC), Air/Carbon Arc Gouging (CAG-A), brazing, and soldering.",
     "features": [
       [
         "WORKSITE & OSHA SAFETY",
@@ -64,7 +64,7 @@
         "Train with SMAW (Stick), GMAW (MIG), oxy/fuel cutting, plasma cutting, gouging, brazing, and soldering."
       ]
     ],
-    "button": "LEARN MORE ABOUT THE PROGRAM →",
+    "button": "LEARN MORE ABOUT THE PROGRAM \u2192",
     "homeSummary": "Wilco Welding prepares students for entry-level welding technician positions and skilled-trades apprenticeships. Students build workplace safety, technical knowledge, and hands-on experience with industry tools and welding processes while preparing for careers in manufacturing, fabrication, and the building trades."
   },
   "news": [
@@ -96,7 +96,7 @@
     "address": "500 Wilco Drive\nRomeoville, IL 60446",
     "phone": "815-838-6941",
     "email": "Welding@wilcoacc.org",
-    "copyright": "© 2024 Wilco Welding Program. All Rights Reserved."
+    "copyright": "\u00a9 2026 Wilco Welding Program. All Rights Reserved."
   },
   "partners": [
     {
@@ -137,20 +137,20 @@
       {
         "title": "SYLLABUS & COURSE DOCUMENTS",
         "description": "Find program expectations, course materials, and important class documents.",
-        "action": "VIEW SYLLABI →",
+        "action": "VIEW SYLLABI \u2192",
         "link": "syllabi.html"
       },
       {
         "title": "SUPPLY LISTS",
-        "description": "Review the tools, clothing, and personal protective equipment you may need for class.",
-        "action": "ASK ABOUT SUPPLIES →",
-        "link": "index.html#contact"
+        "description": "Supply requirements vary by class. Contact Wilco Welding for the current approved supply list.",
+        "action": "CONTACT FOR CURRENT SUPPLY LIST \u2192",
+        "link": "contact.html"
       },
       {
         "title": "GEAR & EQUIPMENT",
-        "description": "Find information and recommended websites for purchasing welding gear, protective clothing, tools, and equipment needed for class and shop work.",
-        "action": "VIEW GEAR & EQUIPMENT →",
-        "link": "index.html#contact"
+        "description": "Contact Wilco Welding for current recommendations on welding gear, protective clothing, tools, and class equipment.",
+        "action": "CONTACT FOR GEAR RECOMMENDATIONS \u2192",
+        "link": "contact.html"
       }
     ],
     "syllabi": {

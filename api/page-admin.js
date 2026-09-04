@@ -55,6 +55,9 @@ const $ = (id) => document.getElementById(id);
 const pageSelect = $("page");
 const status = $("status");
 let originalHtml = "";
+let loadedPage = "";
+let loadedSha = "";
+let loadOk = false;
 let textItems = [];
 let imageItems = [];
 let uploadedUrl = "";
@@ -82,7 +85,7 @@ function extractQuickFields(){
     if(textItems.length>=250) break;
   }
   const seen=new Set();
-  const attrRegex=/(?:src|poster)\s*=\s*(["'])(.*?)\1/gi;
+  const attrRegex=/(?:<img\b[^>]*\bsrc|<source\b[^>]*\bsrc|<video\b[^>]*\bposter)\s*=\s*(["'])(.*?)\1/gi;
   while((m=attrRegex.exec(html))){const url=m[2];if(url&&!seen.has(url)){seen.add(url);imageItems.push({old:url,value:url,type:"image"});}}
   const cssRegex=/url\(\s*(["']?)(.*?)\1\s*\)/gi;
   while((m=cssRegex.exec(html))){const url=m[2];if(url&&!seen.has(url)&&!url.startsWith("data:font")){seen.add(url);imageItems.push({old:url,value:url,type:"background"});}}
@@ -124,12 +127,12 @@ async function loadPage(){
   const page=pageSelect.value;
   history.replaceState(null,"","/page-admin?page="+encodeURIComponent(page));
   $("openPage").href="/"+page;
-  setStatus("Loading "+page+"…");
+  loadOk=false; loadedPage=""; loadedSha=""; $("save").disabled=true; setStatus("Loading "+page+"…");
   try{
     const r=await fetch("/api/page-file?page="+encodeURIComponent(page),{cache:"no-store"});
     const data=await r.json();
     if(!r.ok)throw new Error(data.error||"Could not load page.");
-    originalHtml=data.html; $("html").value=data.html; extractQuickFields();
+    originalHtml=data.html; loadedPage=data.page; loadedSha=data.sha; loadOk=true; $("html").value=data.html; extractQuickFields(); $("save").disabled=false;
     setStatus("Loaded "+page+". Edit text or pictures, then save.","success");
   }catch(e){setStatus("Load error: "+e.message,"error");}
 }
@@ -146,11 +149,11 @@ $("upload").addEventListener("click",async()=>{
   catch(e){setStatus("Upload error: "+e.message,"error");}finally{btn.disabled=false;}
 });
 $("save").addEventListener("click",async()=>{
-  const btn=$("save");btn.disabled=true;applyQuickChanges();setStatus("Saving "+pageSelect.value+"…");
+  const btn=$("save"); if(!loadOk || !loadedSha || loadedPage!==pageSelect.value) return setStatus("Reload this page before saving. The selected page is not the successfully loaded page.","error"); btn.disabled=true;applyQuickChanges();setStatus("Saving "+loadedPage+"…");
   try{
-    const r=await fetch("/api/page-file",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({page:pageSelect.value,html:$("html").value})});
+    const r=await fetch("/api/page-file",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({page:loadedPage,html:$("html").value,sha:loadedSha})});
     const data=await r.json(); if(!r.ok)throw new Error(data.error||"Could not save page.");
-    originalHtml=$("html").value; extractQuickFields(); setStatus("Saved! "+pageSelect.value+" was updated in GitHub.","success");
+    loadedSha=data.sha||loadedSha; originalHtml=$("html").value; extractQuickFields(); setStatus("Saved! "+pageSelect.value+" was updated in GitHub.","success");
   }catch(e){setStatus("Save error: "+e.message,"error");}finally{btn.disabled=false;}
 });
 loadPage();

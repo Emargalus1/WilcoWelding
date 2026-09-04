@@ -57,6 +57,8 @@ export default function handler(req, res) {
     let blog = {};
     let blogPosts = [];
     let creatingNew = false;
+    let loadedOk = false;
+    get("save").disabled = true;
     function setStatus(message,kind) { status.textContent = message; status.dataset.kind = kind || ""; }
     function readForm() {
       const post = {};
@@ -69,9 +71,17 @@ export default function handler(req, res) {
     function renderHistory() {
       const list = get("historyList");
       const previous = blogPosts.slice(1);
-      list.innerHTML = previous.length
-        ? previous.map((post, index) => '<div class="history-item"><b>' + (post.title || "Untitled post") + '</b><span>Previous post ' + (index + 1) + '</span></div>').join("")
-        : '<div class="history-item"><span>No previous posts yet. New posts will be saved here automatically.</span></div>';
+      list.replaceChildren();
+      if (!previous.length) {
+        const item=document.createElement("div"); item.className="history-item";
+        const span=document.createElement("span"); span.textContent="No previous posts yet. New posts will be saved here automatically."; item.appendChild(span); list.appendChild(item); return;
+      }
+      previous.forEach((post,index)=>{
+        const item=document.createElement("div"); item.className="history-item";
+        const b=document.createElement("b"); b.textContent=post.title||"Untitled post";
+        const span=document.createElement("span"); span.textContent="Previous post "+(index+1);
+        item.append(b,span); list.appendChild(item);
+      });
     }
     async function loadContent() {
       try {
@@ -82,11 +92,12 @@ export default function handler(req, res) {
         blogPosts = Array.isArray(current.posts) && current.posts.length ? current.posts : [current];
         blog = blogPosts[0] || {};
         fillForm(blog);
-        renderHistory();
+        renderHistory(); loadedOk=true; get("save").disabled=false;
         setStatus("Current post loaded.","success");
       } catch (error) { setStatus("Error: " + error.message,"error"); }
     }
     get("newPost").addEventListener("click", () => {
+      if(!loadedOk) return setStatus("Wait for the current posts to load before creating a post.","error");
       creatingNew = true;
       fillForm({ eyebrow:"WILCO WELDING NEWS", button:"READ MORE" });
       get("title").focus();
@@ -105,19 +116,17 @@ export default function handler(req, res) {
       finally { button.disabled = false; }
     });
     get("save").addEventListener("click",async () => {
-      const button = get("save"); button.disabled = true;
-      blog = readForm();
-      if (creatingNew) {
-        blogPosts = [blog, ...blogPosts];
-      } else {
-        blogPosts = [blog, ...blogPosts.slice(1)];
-      }
+      const button = get("save");
+      if(!loadedOk) return setStatus("The current post history did not load. Reload before saving.","error");
+      button.disabled = true;
+      const nextBlog = readForm();
+      const nextPosts = creatingNew ? [nextBlog, ...blogPosts] : [nextBlog, ...blogPosts.slice(1)];
       setStatus("Saving changes…");
       try {
-        const response = await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({blog,blogPosts})});
+        const response = await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({blog:nextBlog,blogPosts:nextPosts})});
         const result = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(result.error || "Could not save your changes.");
-        creatingNew = false;
+        blog=nextBlog; blogPosts=nextPosts; creatingNew = false;
         renderHistory();
         setStatus("Saved! Your website has been updated.","success");
       } catch (error) { setStatus("Save error: " + error.message,"error"); }
