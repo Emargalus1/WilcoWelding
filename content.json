@@ -3,7 +3,7 @@
     "eyebrow": "WILCO WELDING PROGRAM",
     "title": "START YOUR CAREER",
     "description": "Students will learn essential industry-standard fundamentals, including proper procedures, safe equipment operation, hazard identification, and best practices for maintaining a safe and professional work environment.",
-    "button": "EXPLORE THE PROGRAM \u2192",
+    "button": "EXPLORE THE PROGRAM →",
     "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/hero-welding-n69ZqAgnIY5lgvbNevUv3Tzz5MH3wB.jpg",
     "slides": [
       "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/hero-welding-n69ZqAgnIY5lgvbNevUv3Tzz5MH3wB.jpg",
@@ -15,33 +15,69 @@
   },
   "blog": {
     "eyebrow": "WILCO WELDING NEWS",
-    "title": "AWS Student Chapter Election",
-    "description": "AWS Student Chapter Election for 2026-2027: The new committee members are \nAWS CHAIR - Anthony Campos\nAWS VICE - CHAIR - Matt Herrera \nAWS Secretary - Brandon Larson \nAWS Treasurer - Mike Basile\nAWS Sponsorship Committee Chair - Ashley Hobbs\nAWS Sponsorship Committee Vice - Chair - Logan Beutel\nAWS Media Committee Chair - Rylee Rodriguez\nAWS Media Committee Vice Chair - Ashley Hobbs.",
+    "title": "WILCO OPEN HOUSE",
+    "description": "Join us as we celebrate 50 years of empowering students, building futures, and strengthening our community through career and technical education.",
     "button": "READ MORE",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/aws%20logo-tlJfh4VdcjeWDxPjdMwa4oCAR69xv2.jpg",
+    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco%20front%20door-CEAgZ1Eyg2KB0i7E49lrrdAzp0Ylhb.jpg",
     "link": "#",
     "posts": [
       {
+        "id": "post-wilco-open-house-2026-09-17",
+        "eyebrow": "WILCO WELDING NEWS",
+        "title": "WILCO OPEN HOUSE",
+        "description": "Join us as we celebrate 50 years of empowering students, building futures, and strengthening our community through career and technical education.",
+        "button": "READ MORE",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco%20front%20door-CEAgZ1Eyg2KB0i7E49lrrdAzp0Ylhb.jpg",
+        "eventDate": "2026-09-17",
+        "link": "#"
+      },
+      {
+        "id": "post-aws-student-chapter-election-1",
         "eyebrow": "WILCO WELDING NEWS",
         "title": "AWS Student Chapter Election",
         "description": "AWS Student Chapter Election for 2026-2027: The new committee members are \nAWS CHAIR - Anthony Campos\nAWS VICE - CHAIR - Matt Herrera \nAWS Secretary - Brandon Larson \nAWS Treasurer - Mike Basile\nAWS Sponsorship Committee Chair - Ashley Hobbs\nAWS Sponsorship Committee Vice - Chair - Logan Beutel\nAWS Media Committee Chair - Rylee Rodriguez\nAWS Media Committee Vice Chair - Ashley Hobbs.",
         "button": "READ MORE",
         "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/aws%20logo-tlJfh4VdcjeWDxPjdMwa4oCAR69xv2.jpg",
+        "eventDate": "",
         "link": "#"
       },
       {
+        "id": "post-wilco-welding-new-website-2",
         "eyebrow": "Wilco Welding",
         "title": "Wilco Welding New Website",
         "description": "The Wilco Welding Department is committed to highlighting the opportunities, resources, and industry connections available through our program. Our website will serve as a central resource for information about the welding program, student support services, the AWS Student Chapter, and our partnerships with industry professionals and employers.",
         "button": "View More",
         "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco_Welding_Logo-KNIrx8Q1MMpyVKxuuzZowEYj1rAnkw.jpg",
+        "eventDate": "",
+        "link": "#"
+      },
+      {
+        "id": "post-aws-student-chapter-election-0",
+        "eyebrow": "WILCO WELDING NEWS",
+        "title": "AWS Student Chapter Election",
+        "description": "AWS Student Chapter Election for 2026-2027: The new committee members are \nAWS CHAIR - Anthony Campos\nAWS VICE - CHAIR - Matt Herrera \nAWS Secretary - Brandon Larson \nAWS Treasurer - Mike Basile\nAWS Sponsorship Committee Chair - Ashley Hobbs\nAWS Sponsorship Committee Vice - Chair - Logan Beutel\nAWS Media Committee Chair - Rylee Rodriguez\nAWS Media Committee Vice Chair - Ashley Hobbs.",
+        "button": "READ MORE",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/aws%20logo-tlJfh4VdcjeWDxPjdMwa4oCAR69xv2.jpg",
+        "eventDate": "",
+        "link": "#"
+      },
+      {
+        "id": "post-wilco-welding-new-website-1",
+        "eyebrow": "Wilco Welding",
+        "title": "Wilco Welding New Website",
+        "description": "The Wilco Welding Department is committed to highlighting the opportunities, resources, and industry connections available through our program. Our website will serve as a central resource for information about the welding program, student support services, the AWS Student Chapter, and our partnerships with industry professionals and employers.",
+        "button": "View More",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco_Welding_Logo-KNIrx8Q1MMpyVKxuuzZowEYj1rAnkw.jpg",
+        "eventDate": "",
         "link": "#"
       }
-    ]
+    ],
+    "id": "post-wilco-open-house-2026-09-17",
+    "eventDate": "2026-09-17"
   },
   "program": {
     "title": "WELDING PROGRAM",
-    "description": "The Wilco Welding Program is intended to prepare students for the requirements of an entry-level welding technician or apprenticeship in the Skilled Trades. Students will be oriented to a career pathway and begin developing Workplace Skills, Worksite Safety, Technical Knowledge, and Hands-On practice. Upon completion of the Program, a graduate should be able to obtain an apprenticeship or entry-level position in a Manufacturing, Fabrication or Building Trades sector.\n\nIn order to prepare students for their role as a Welding Technician, they will participate in in-depth classroom discussions of OSHA Safety Standards, Welding Terminology, Precision Measurements, Welding Symbols & Blueprint Reading, Industry Codes & Documents, Welding Equipment, Welding Theory, and workplace skills such as Continuing Education and Professional Development, r\u00e9sum\u00e9 development, job searches, and interview practices.\n\nStudents will also participate in Shop Activities where they will learn how to use hand and power tools and welding equipment. Our lab curriculum covers Shielded Metal Arc Welding (SMAW), Gas Metal Arc Welding (GMAW), Oxy/Fuel Cutting (OFC), Plasma Arc Cutting (PAC), Air/Carbon Arc Gouging (CAG-A), brazing, and soldering.",
+    "description": "The Wilco Welding Program is intended to prepare students for the requirements of an entry-level welding technician or apprenticeship in the Skilled Trades. Students will be oriented to a career pathway and begin developing Workplace Skills, Worksite Safety, Technical Knowledge, and Hands-On practice. Upon completion of the Program, a graduate should be able to obtain an apprenticeship or entry-level position in a Manufacturing, Fabrication or Building Trades sector.\n\nIn order to prepare students for their role as a Welding Technician, they will participate in in-depth classroom discussions of OSHA Safety Standards, Welding Terminology, Precision Measurements, Welding Symbols & Blueprint Reading, Industry Codes & Documents, Welding Equipment, Welding Theory, and workplace skills such as Continuing Education and Professional Development, résumé development, job searches, and interview practices.\n\nStudents will also participate in Shop Activities where they will learn how to use hand and power tools and welding equipment. Our lab curriculum covers Shielded Metal Arc Welding (SMAW), Gas Metal Arc Welding (GMAW), Oxy/Fuel Cutting (OFC), Plasma Arc Cutting (PAC), Air/Carbon Arc Gouging (CAG-A), brazing, and soldering.",
     "features": [
       [
         "WORKSITE & OSHA SAFETY",
@@ -64,7 +100,7 @@
         "Train with SMAW (Stick), GMAW (MIG), oxy/fuel cutting, plasma cutting, gouging, brazing, and soldering."
       ]
     ],
-    "button": "LEARN MORE ABOUT THE PROGRAM \u2192",
+    "button": "LEARN MORE ABOUT THE PROGRAM →",
     "homeSummary": "Wilco Welding prepares students for entry-level welding technician positions and skilled-trades apprenticeships. Students build workplace safety, technical knowledge, and hands-on experience with industry tools and welding processes while preparing for careers in manufacturing, fabrication, and the building trades."
   },
   "news": [
@@ -96,7 +132,7 @@
     "address": "500 Wilco Blvd.\nRomeoville, IL 60446",
     "phone": "815-838-6941",
     "email": "Welding@wilcoacc.org",
-    "copyright": "\u00a9 2026 Wilco Welding Program. All Rights Reserved."
+    "copyright": "© 2026 Wilco Welding Program. All Rights Reserved."
   },
   "partners": [
     {
@@ -137,19 +173,19 @@
       {
         "title": "SYLLABUS & COURSE DOCUMENTS",
         "description": "Find program expectations, course materials, and important class documents.",
-        "action": "VIEW SYLLABI \u2192",
+        "action": "VIEW SYLLABI →",
         "link": "syllabi.html"
       },
       {
         "title": "SUPPLY LISTS",
         "description": "Supply requirements vary by class. Contact Wilco Welding for the current approved supply list.",
-        "action": "CONTACT FOR CURRENT SUPPLY LIST \u2192",
+        "action": "CONTACT FOR CURRENT SUPPLY LIST →",
         "link": "contact.html"
       },
       {
         "title": "GEAR & EQUIPMENT",
         "description": "Contact Wilco Welding for current recommendations on welding gear, protective clothing, tools, and class equipment.",
-        "action": "CONTACT FOR GEAR RECOMMENDATIONS \u2192",
+        "action": "CONTACT FOR GEAR RECOMMENDATIONS →",
         "link": "contact.html"
       }
     ],
