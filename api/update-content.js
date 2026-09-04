@@ -95,6 +95,7 @@ export default async function handler(req, res) {
 
     const blog = body.blog;
     const blogPosts = body.blogPosts;
+    const deleteBlogPostId = text(body.deleteBlogPostId);
     const hero = body.hero;
     const events = body.events;
     const partners = body.partners;
@@ -103,7 +104,7 @@ export default async function handler(req, res) {
     const awsHero = body.awsHero;
     const wilco = body.wilco;
 
-    if (!blog && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero && !wilco) {
+    if (!blog && !deleteBlogPostId && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero && !wilco) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
@@ -112,6 +113,15 @@ export default async function handler(req, res) {
     ensureLimit("Partners", partners, LIMITS.partners);
     ensureLimit("AWS hero slides", awsHero?.slides, LIMITS.slides);
     ensureLimit("Home hero slides", hero?.slides, LIMITS.slides);
+
+    if (deleteBlogPostId) {
+      const existingPosts = Array.isArray(content.blog?.posts) ? content.blog.posts.map(cleanPost) : [];
+      if (!existingPosts.length) throw new Error("There are no saved blog posts to delete.");
+      if (existingPosts[0].id === deleteBlogPostId) throw new Error("The current blog post cannot be deleted. Only archived posts can be removed.");
+      const matches = existingPosts.reduce((count, post, index) => count + (index > 0 && post.id === deleteBlogPostId ? 1 : 0), 0);
+      if (matches !== 1) throw new Error(matches ? "That archived post is not uniquely identified and was not deleted." : "That archived post no longer exists. Reload the admin page.");
+      content.blog = { ...content.blog, posts: existingPosts.filter((post, index) => index === 0 || post.id !== deleteBlogPostId) };
+    }
 
     if (blog) {
       const latest = cleanPost(blog, 0);

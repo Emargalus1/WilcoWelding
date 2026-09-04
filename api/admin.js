@@ -27,8 +27,8 @@ export default function handler(req, res) {
     input,textarea { width:100%; border:1px solid #b9c2d0; border-radius:9px; background:#fff; color:var(--ink); padding:11px 12px; font:inherit; outline:none; transition:border-color .15s,box-shadow .15s; }
     input:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,6,.15); } textarea { min-height:120px; resize:vertical; line-height:1.45; }
     .upload-box { margin-top:26px; padding:18px; border:1px dashed #b9c2d0; border-radius:12px; background:#fbfcfe; }.upload-box h3 { margin:0 0 5px; font-size:1rem; }.upload-row { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px; }input[type="file"] { max-width:330px; padding:8px; background:#fff; }
-    button { appearance:none; border:0; border-radius:9px; padding:11px 16px; font:inherit; font-weight:750; cursor:pointer; }.primary { background:var(--accent); color:#fff; }.primary:hover { background:var(--accent-dark); }.secondary { background:#edf1f6; color:#263244; }.secondary:hover { background:#e2e8f0; }button:disabled { cursor:wait; opacity:.65; }
-    .footer-actions { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:14px; }#status { margin:0; min-height:1.4em; color:var(--muted); font-size:.9rem; }.history { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); }.history h3 { margin:0 0 5px; }.history-copy { margin:0 0 13px; color:var(--muted); font-size:.88rem; }.history-list { display:grid; gap:9px; }.history-item { padding:12px 14px; border:1px solid var(--line); border-radius:9px; background:#fbfcfe; }.history-item b { display:block; }.history-item span { color:var(--muted); font-size:.84rem; }#status[data-kind="success"] { color:var(--success); }#status[data-kind="error"] { color:var(--danger); }
+    button { appearance:none; border:0; border-radius:9px; padding:11px 16px; font:inherit; font-weight:750; cursor:pointer; }.primary { background:var(--accent); color:#fff; }.primary:hover { background:var(--accent-dark); }.secondary { background:#edf1f6; color:#263244; }.secondary:hover { background:#e2e8f0; }.danger { background:#fff; color:var(--danger); border:1px solid #e7a8a8; padding:8px 12px; }.danger:hover { background:#fff1f1; border-color:var(--danger); }button:disabled { cursor:wait; opacity:.65; }
+    .footer-actions { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; align-items:center; gap:14px; }#status { margin:0; min-height:1.4em; color:var(--muted); font-size:.9rem; }.history { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); }.history h3 { margin:0 0 5px; }.history-copy { margin:0 0 13px; color:var(--muted); font-size:.88rem; }.history-list { display:grid; gap:9px; }.history-item { padding:12px 14px; border:1px solid var(--line); border-radius:9px; background:#fbfcfe; display:flex; align-items:center; justify-content:space-between; gap:14px; }.history-details { min-width:0; }.history-item b { display:block; overflow-wrap:anywhere; }.history-item span { color:var(--muted); font-size:.84rem; }#status[data-kind="success"] { color:var(--success); }#status[data-kind="error"] { color:var(--danger); }
     .admin-hub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:15px}.hub-link{display:block;padding:13px 14px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font-size:.86rem;font-weight:800;text-decoration:none}.hub-link:hover,.active-hub{border-color:var(--accent);background:#fff4e8;color:var(--accent-dark)}@media (max-width:640px) { .grid { grid-template-columns:1fr; }.topbar-inner { padding:16px 0; }main { margin-top:24px; }.footer-actions { align-items:stretch; flex-direction:column; }.footer-actions button { width:100%; } }
   </style>
 </head>
@@ -78,10 +78,29 @@ export default function handler(req, res) {
       }
       previous.forEach((post,index)=>{
         const item=document.createElement("div"); item.className="history-item";
+        const details=document.createElement("div"); details.className="history-details";
         const b=document.createElement("b"); b.textContent=post.title||"Untitled post";
-        const span=document.createElement("span"); span.textContent="Previous post "+(index+1);
-        item.append(b,span); list.appendChild(item);
+        const span=document.createElement("span"); span.textContent="Archived post "+(index+1);
+        const remove=document.createElement("button"); remove.type="button"; remove.className="danger"; remove.textContent="Delete";
+        remove.setAttribute("aria-label","Delete archived post: "+(post.title||"Untitled post"));
+        remove.addEventListener("click",()=>deleteArchivedPost(post,remove));
+        details.append(b,span); item.append(details,remove); list.appendChild(item);
       });
+    }
+    async function deleteArchivedPost(post,button) {
+      if(!loadedOk) return setStatus("Wait for the current posts to load before deleting a post.","error");
+      const title=post.title||"Untitled post";
+      if(!window.confirm('Permanently delete the archived post "'+title+'"? This cannot be undone.')) return;
+      button.disabled=true; setStatus("Deleting archived post…");
+      try {
+        const response=await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sha:window.__contentSha,deleteBlogPostId:post.id})});
+        const result=await response.json().catch(() => ({}));
+        if(!response.ok) throw new Error(result.error||"Could not delete the archived post.");
+        window.__contentSha=result.sha||window.__contentSha;
+        blogPosts=blogPosts.filter((saved,index)=>index===0||saved.id!==post.id);
+        renderHistory();
+        setStatus('Deleted archived post "'+title+'". Vercel is deploying the change.',"success");
+      } catch(error) { setStatus("Delete error: "+error.message,"error"); button.disabled=false; }
     }
     async function loadContent() {
       try {
