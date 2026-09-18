@@ -5,6 +5,7 @@
     "node": "22.x"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "2.0.0"
   }
 }
