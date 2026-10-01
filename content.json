@@ -17,20 +17,20 @@
   },
   "blog": {
     "eyebrow": "WILCO WELDING NEWS",
-    "title": "WILCO OPEN HOUSE",
-    "description": "Join us as we celebrate 50 years of empowering students, building futures, and strengthening our community through career and technical education. September 17th 2026 at 5:30 - 7:30",
+    "title": "AWS Student Chapter Event !!!!!!",
+    "description": "The AWS Student Chapter is hosting a TIG welding workshop with Lisa Moran, along with a Stick Welding Competition featuring Welding 2 students!\nEvent Details:\n- Date: October 14, 2026\n- Time: 5:30 PM – 8:00 PM\n- Cost: $20 cash or $22 tap-to-pay\n- TIG Workshop Instructor: Lisa Moran\n- Competition: Stick Welding with Welding 2 students\nPrizes will be awarded to 1st, 2nd, and 3rd place winners in the Stick Welding Competition!\nJoin us for an evening of hands-on welding, friendly competition, and an opportunity to develop your skills!\nRSVP to secure your spot!",
     "button": "READ MORE",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco%20front%20door-CEAgZ1Eyg2KB0i7E49lrrdAzp0Ylhb.jpg",
+    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/ChatGPT%20Image%20Oct%201%2C%202026%2C%2008_34_14%20AM-IUN9Jbf0A4nVxgN8aOFkVQTyVOUKAP.png",
     "link": "#",
     "posts": [
       {
-        "id": "post-wilco-open-house-2026-09-17",
+        "id": "post-aws-student-chapter-event-2026-10-14",
         "eyebrow": "WILCO WELDING NEWS",
-        "title": "WILCO OPEN HOUSE",
-        "description": "Join us as we celebrate 50 years of empowering students, building futures, and strengthening our community through career and technical education. September 17th 2026 at 5:30 - 7:30",
+        "title": "AWS Student Chapter Event !!!!!!",
+        "description": "The AWS Student Chapter is hosting a TIG welding workshop with Lisa Moran, along with a Stick Welding Competition featuring Welding 2 students!\nEvent Details:\n- Date: October 14, 2026\n- Time: 5:30 PM – 8:00 PM\n- Cost: $20 cash or $22 tap-to-pay\n- TIG Workshop Instructor: Lisa Moran\n- Competition: Stick Welding with Welding 2 students\nPrizes will be awarded to 1st, 2nd, and 3rd place winners in the Stick Welding Competition!\nJoin us for an evening of hands-on welding, friendly competition, and an opportunity to develop your skills!\nRSVP to secure your spot!",
         "button": "READ MORE",
-        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco%20front%20door-CEAgZ1Eyg2KB0i7E49lrrdAzp0Ylhb.jpg",
-        "eventDate": "2026-09-17",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/ChatGPT%20Image%20Oct%201%2C%202026%2C%2008_34_14%20AM-IUN9Jbf0A4nVxgN8aOFkVQTyVOUKAP.png",
+        "eventDate": "2026-10-14",
         "link": "#"
       },
       {
@@ -52,10 +52,20 @@
         "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco_Welding_Logo-KNIrx8Q1MMpyVKxuuzZowEYj1rAnkw.jpg",
         "eventDate": "",
         "link": "#"
+      },
+      {
+        "id": "post-wilco-open-house-2026-09-17",
+        "eyebrow": "WILCO WELDING NEWS",
+        "title": "WILCO OPEN HOUSE",
+        "description": "Join us as we celebrate 50 years of empowering students, building futures, and strengthening our community through career and technical education. September 17th 2026 at 5:30 - 7:30",
+        "button": "READ MORE",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco%20front%20door-CEAgZ1Eyg2KB0i7E49lrrdAzp0Ylhb.jpg",
+        "eventDate": "2026-09-17",
+        "link": "#"
       }
     ],
-    "id": "post-wilco-open-house-2026-09-17",
-    "eventDate": "2026-09-17"
+    "id": "post-aws-student-chapter-event-2026-10-14",
+    "eventDate": "2026-10-14"
   },
   "program": {
     "title": "WELDING PROGRAM",
