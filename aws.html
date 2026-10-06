@@ -10,7 +10,7 @@
       layer.className="hero-slide";hero.prepend(layer);let current=0;
       const show=index=>{current=(index+slides.length)%slides.length;layer.style.backgroundImage="url("+JSON.stringify(slides[current])+")"};
       show(0);
-      if(slides.length>1){controls.style.display="block";controls.querySelector(".previous").onclick=()=>show(current-1);controls.querySelector(".next").onclick=()=>show(current+1);setInterval(()=>show(current+1),8000)}
+      if(slides.length>1){let timer;const restart=()=>{clearInterval(timer);timer=setInterval(()=>show(current+1),10000)};controls.style.display="block";controls.querySelector(".previous").onclick=()=>{show(current-1);restart()};controls.querySelector(".next").onclick=()=>{show(current+1);restart()};slides.forEach(src=>{const img=new Image();img.src=src});restart()}
     }
     const posts=Array.isArray(data.blog?.posts)&&data.blog.posts.length?data.blog.posts:[data.blog||{}];
     const chapterPosts=posts.filter(post=>/\baws\b|student\s+chapter/i.test([post.eyebrow,post.title,post.description].join(" "))).slice(0,5);
