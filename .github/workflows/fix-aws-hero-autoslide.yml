@@ -1,6 +1,5 @@
 name: Fix AWS hero autoslide
 on:
-  workflow_dispatch:
   push:
     paths:
       - '.github/workflows/fix-aws-hero-autoslide.yml'
@@ -17,19 +16,11 @@ jobs:
           from pathlib import Path
           p = Path('aws.html')
           s = p.read_text(encoding='utf-8')
-          old = '''      layer.className="hero-slide";hero.prepend(layer);let current=0;
-      const show=index=>{current=(index+slides.length)%slides.length;layer.style.backgroundImage="url("+JSON.stringify(slides[current])+")"};
-      show(0);
-      if(slides.length>1){controls.style.display="block";controls.querySelector(".previous").onclick=()=>show(current-1);controls.querySelector(".next").onclick=()=>show(current+1);setInterval(()=>show(current+1),8000)}'''
-          new = '''      layer.className="hero-slide";hero.prepend(layer);let current=0,timer;
-      const show=index=>{current=(index+slides.length)%slides.length;layer.style.backgroundImage="url("+JSON.stringify(slides[current])+")"};
-      const restart=()=>{clearInterval(timer);if(slides.length>1)timer=setInterval(()=>show(current+1),10000)};
-      slides.forEach(src=>{const img=new Image();img.src=src});
-      show(0);
-      if(slides.length>1){controls.style.display="block";controls.querySelector(".previous").onclick=()=>{show(current-1);restart()};controls.querySelector(".next").onclick=()=>{show(current+1);restart()};restart()}'''
+          old = 'if(slides.length>1){controls.style.display="block";controls.querySelector(".previous").onclick=()=>show(current-1);controls.querySelector(".next").onclick=()=>show(current+1);setInterval(()=>show(current+1),8000)}'
+          new = 'if(slides.length>1){let timer;const restart=()=>{clearInterval(timer);timer=setInterval(()=>show(current+1),10000)};controls.style.display="block";controls.querySelector(".previous").onclick=()=>{show(current-1);restart()};controls.querySelector(".next").onclick=()=>{show(current+1);restart()};slides.forEach(src=>{const img=new Image();img.src=src});restart()}'
           if old not in s:
               raise SystemExit('Target slideshow block not found')
-          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          p.write_text(s.replace(old,new,1), encoding='utf-8')
           PY
       - name: Commit change
         run: |
