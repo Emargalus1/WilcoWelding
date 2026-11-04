@@ -17,12 +17,22 @@
   },
   "blog": {
     "eyebrow": "WILCO WELDING NEWS",
-    "title": "AWS Student Chapter Event !!!!!!",
-    "description": "The AWS Student Chapter is hosting a TIG welding workshop with Lisa Moran, along with a Stick Welding Competition featuring Welding 2 students!\nEvent Details:\n- Date: October 14, 2026\n- Time: 5:30 PM – 8:00 PM\n- Cost: $20 cash or $22 tap-to-pay\n- TIG Workshop Instructor: Lisa Moran\n- Competition: Stick Welding with Welding 2 students\nPrizes will be awarded to 1st, 2nd, and 3rd place winners in the Stick Welding Competition!\nJoin us for an evening of hands-on welding, friendly competition, and an opportunity to develop your skills!\nRSVP to secure your spot!",
+    "title": "OPEN HOUSE NEWS LETTER",
+    "description": "This year marked Wilco's 50th Anniversary. To commemorate this achievement we had an Open House, and it was a wonderful day for students, families, and the community. Parents and future students had the opportunity to see what students will learn throughout the school year. Students from every department shared their experiences, highlighting what they have learned during their time at Wilco and answering questions about their programs.\nIn the Welding Department, parents and prospective students explored the welding labs, viewed the equipment, safety gear, and received a sneak peek of SMAW (Stick) and GTAW (TIG) welding processes. Visitors also had the chance to tour both the middle and large welding labs.\nAcross all departments, parents were introduced to the curriculum and skills that current students are developing. Students gave guided tours of their classrooms, demonstrated the tools and equipment they use, explained class projects, and answered questions, providing families with a better understanding of the opportunities available at Wilco.",
     "button": "READ MORE",
-    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/ChatGPT%20Image%20Oct%201%2C%202026%2C%2008_34_14%20AM-IUN9Jbf0A4nVxgN8aOFkVQTyVOUKAP.png",
+    "image": "",
     "link": "#",
     "posts": [
+      {
+        "id": "post-open-house-news-letter-0",
+        "eyebrow": "WILCO WELDING NEWS",
+        "title": "OPEN HOUSE NEWS LETTER",
+        "description": "This year marked Wilco's 50th Anniversary. To commemorate this achievement we had an Open House, and it was a wonderful day for students, families, and the community. Parents and future students had the opportunity to see what students will learn throughout the school year. Students from every department shared their experiences, highlighting what they have learned during their time at Wilco and answering questions about their programs.\nIn the Welding Department, parents and prospective students explored the welding labs, viewed the equipment, safety gear, and received a sneak peek of SMAW (Stick) and GTAW (TIG) welding processes. Visitors also had the chance to tour both the middle and large welding labs.\nAcross all departments, parents were introduced to the curriculum and skills that current students are developing. Students gave guided tours of their classrooms, demonstrated the tools and equipment they use, explained class projects, and answered questions, providing families with a better understanding of the opportunities available at Wilco.",
+        "button": "READ MORE",
+        "image": "",
+        "eventDate": "",
+        "link": "#"
+      },
       {
         "id": "post-aws-student-chapter-event-2026-10-14",
         "eyebrow": "WILCO WELDING NEWS",
@@ -64,8 +74,8 @@
         "link": "#"
       }
     ],
-    "id": "post-aws-student-chapter-event-2026-10-14",
-    "eventDate": "2026-10-14"
+    "id": "post-open-house-news-letter-0",
+    "eventDate": ""
   },
   "program": {
     "title": "WELDING PROGRAM",
