@@ -209,3 +209,16 @@ footer{background:#050505;color:#fff;margin-top:0}
   .hero .arrow.left{left:calc(50% - 62px)}.hero .arrow.right{right:calc(50% - 62px)}
   .slider-dots{justify-content:center}
 }
+
+/* Wilco Welding social media links */
+.social-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.social-links a{display:inline-flex;align-items:center;color:#fff;text-decoration:none;font-size:13px;font-weight:700;border-bottom:2px solid transparent;padding:3px 0}
+.social-links a:hover,.social-links a:focus-visible{color:var(--yellow);border-bottom-color:var(--yellow)}
+.home-social{background:#f5f5f5;padding:34px 20px}
+.home-social-inner{max-width:1180px;margin:0 auto;text-align:center}
+.home-social .yellow{margin:0 0 4px}
+.home-social h2{font-family:Oswald,sans-serif;font-size:31px;margin:0;color:#111}
+.home-social .underline{margin:8px auto 14px}
+.home-social p:not(.yellow){max-width:700px;margin:0 auto 18px;line-height:1.5;color:#444}
+.home-social-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+@media(max-width:520px){.home-social-buttons{flex-direction:column;align-items:stretch}.home-social-buttons .yellow-button{text-align:center}}
