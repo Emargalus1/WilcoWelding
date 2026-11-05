@@ -33,6 +33,10 @@
       "destination": "/api/page-heroes-admin"
     },
     {
+      "source": "/alumni-admin",
+      "destination": "/api/alumni-admin"
+    },
+    {
       "source": "/wilco-admin",
       "destination": "/api/wilco-admin"
     },
