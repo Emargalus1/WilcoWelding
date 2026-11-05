@@ -1,6 +1,6 @@
 import { requireAdmin } from "../lib/auth.js";
 
-const LIMITS = { events: 20, partners: 30, slides: 8, posts: 50, programs: 60 };
+const LIMITS = { events: 20, partners: 30, slides: 8, posts: 50, programs: 60, alumni: 100 };
 const own = (obj, key) => Object.prototype.hasOwnProperty.call(obj || {}, key);
 const text = (value) => String(value ?? "").trim();
 
@@ -103,8 +103,9 @@ export default async function handler(req, res) {
     const pageHeroes = body.pageHeroes;
     const awsHero = body.awsHero;
     const wilco = body.wilco;
+    const alumni = body.alumni;
 
-    if (!blog && !deleteBlogPostId && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero && !wilco) {
+    if (!blog && !deleteBlogPostId && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero && !wilco && !Array.isArray(alumni)) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
@@ -113,6 +114,7 @@ export default async function handler(req, res) {
     ensureLimit("Partners", partners, LIMITS.partners);
     ensureLimit("AWS hero slides", awsHero?.slides, LIMITS.slides);
     ensureLimit("Home hero slides", hero?.slides, LIMITS.slides);
+    ensureLimit("Alumni profiles", alumni, LIMITS.alumni);
 
     if (deleteBlogPostId) {
       const existingPosts = Array.isArray(content.blog?.posts) ? content.blog.posts.map(cleanPost) : [];
@@ -233,6 +235,22 @@ export default async function handler(req, res) {
       }
       if (!text(next.title) || !text(next.description)) throw new Error("The home hero requires both a title and description.");
       content.hero = next;
+    }
+
+    if (Array.isArray(alumni)) {
+      content.alumni = alumni.map((person, index) => {
+        const imageRaw = text(person?.image);
+        const image = imageRaw ? safeUrl(imageRaw) : "";
+        if (imageRaw && !image) throw new Error(`Invalid alumni image URL for profile ${index + 1}.`);
+        return {
+          id: text(person?.id) || `alumni-${slug(person?.name)}-${index}`,
+          name: text(person?.name),
+          year: text(person?.year),
+          current: text(person?.current),
+          bio: text(person?.bio),
+          image
+        };
+      }).filter((person) => person.name || person.bio || person.image);
     }
 
     if (wilco) {
