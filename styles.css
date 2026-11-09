@@ -132,8 +132,9 @@ footer{background:#050505;color:#fff;margin-top:0}
   width: 100%;
   height: 280px;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background:#111;
 }
 
 /* Portrait uploads get a narrow, photo-sized box so nothing is cropped. */
