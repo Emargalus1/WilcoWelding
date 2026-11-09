@@ -1,6 +1,6 @@
 import { requireAdmin } from "../lib/auth.js";
 
-const LIMITS = { events: 20, partners: 30, slides: 8, posts: 50, programs: 60, alumni: 100 };
+const LIMITS = { events: 20, partners: 30, slides: 8, posts: 50, programs: 60, alumni: 100, articles: 100 };
 const own = (obj, key) => Object.prototype.hasOwnProperty.call(obj || {}, key);
 const text = (value) => String(value ?? "").trim();
 
@@ -104,12 +104,14 @@ export default async function handler(req, res) {
     const awsHero = body.awsHero;
     const wilco = body.wilco;
     const alumni = body.alumni;
+    const articles = body.articles;
 
-    if (!blog && !deleteBlogPostId && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero && !wilco && !Array.isArray(alumni)) {
+    if (!blog && !deleteBlogPostId && !hero && !Array.isArray(events) && !Array.isArray(partners) && !resources && !pageHeroes && !awsHero && !wilco && !Array.isArray(alumni) && !Array.isArray(articles)) {
       return res.status(400).json({ error: "Missing content to save." });
     }
 
     ensureLimit("Blog posts", blogPosts, LIMITS.posts);
+    ensureLimit("Articles", articles, LIMITS.articles);
     ensureLimit("Events", events, LIMITS.events);
     ensureLimit("Partners", partners, LIMITS.partners);
     ensureLimit("AWS hero slides", awsHero?.slides, LIMITS.slides);
@@ -251,6 +253,23 @@ export default async function handler(req, res) {
           image
         };
       }).filter((person) => person.name || person.bio || person.image);
+    }
+
+    if (Array.isArray(articles)) {
+      content.articles = articles.map((article,index) => {
+        const rawImage = text(article?.image);
+        const image = rawImage ? safeUrl(rawImage) : "";
+        if (rawImage && !image) throw new Error("Invalid image URL for article " + (index+1));
+        return {
+          id: text(article?.id) || "article-" + slug(article?.title) + "-" + index,
+          title: text(article?.title).slice(0,200),
+          author: text(article?.author).slice(0,120),
+          date: text(article?.date).slice(0,30),
+          summary: text(article?.summary).slice(0,500),
+          body: text(article?.body).slice(0,30000),
+          image
+        };
+      }).filter(a => a.title);
     }
 
     if (wilco) {
