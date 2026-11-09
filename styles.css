@@ -76,7 +76,7 @@ footer{background:#050505;color:#fff;margin-top:0}
   display: grid;
   grid-template-columns: minmax(0, 820px) minmax(260px, 420px);
   justify-content: start;
-  align-items: stretch;
+  align-items: start;
 }
 
 .blog-text {
@@ -123,18 +123,20 @@ footer{background:#050505;color:#fff;margin-top:0}
 
 .blog-image {
   width: 100%;
-  min-height: 280px;
+  min-height: 0;
+  align-self: start;
   overflow: hidden;
-  background: #111;
+  background: #fff;
 }
 
 .blog-image img {
   width: 100%;
-  height: 280px;
+  height: auto;
+  max-height: 380px;
   display: block;
   object-fit: contain;
-  object-position: center;
-  background:#111;
+  object-position: top center;
+  background: #fff;
 }
 
 /* Portrait uploads get a narrow, photo-sized box so nothing is cropped. */
@@ -186,7 +188,7 @@ footer{background:#050505;color:#fff;margin-top:0}
 
   .blog-image,
   .blog-image img {
-    min-height: 220px;
+    min-height: 0;
   }
 }
 
