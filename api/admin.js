@@ -35,7 +35,7 @@ export default function handler(req, res) {
 <body>
   <header class="topbar"><div class="topbar-inner"><div class="mark">W</div><div><h1>Wilco Welding Admin</h1><p>Publish new posts and keep your complete blog history.</p></div></div></header>
   <main>
-    <div class="intro"><h2>Admin Hub</h2><p>Choose the part of the website you want to update.</p><div class="admin-hub"><a class="hub-link active-hub" href="/admin">BLOG POSTS</a><a class="hub-link" href="/hero-admin">HOME HERO</a><a class="hub-link" href="/aws-admin">AWS PAGE</a><a class="hub-link" href="/wilco-admin">WILCO PAGE</a><a class="hub-link" href="/events-admin">UPCOMING EVENTS</a><a class="hub-link" href="/partners-admin">PARTNERS &amp; EMPLOYERS</a><a class="hub-link" href="/resources-admin">STUDENT RESOURCES</a><a class="hub-link" href="/resources-admin#alumni">ALUMNI</a><a class="hub-link" href="/page-heroes-admin">PAGE HEROES</a></div></div>    <div class="intro"><h2>Blog posts</h2><p>Publish a new post or update the newest post. Every post is saved. The newest five appear on the Blog page, and the full history is available in the Blog Archive.</p></div>
+    <div class="intro"><h2>Admin Hub</h2><p>Choose the part of the website you want to update.</p><div class="admin-hub"><a class="hub-link active-hub" href="/admin">BLOG POSTS</a><a class="hub-link" href="/hero-admin">HOME HERO</a><a class="hub-link" href="/aws-admin">AWS PAGE</a><a class="hub-link" href="/wilco-admin">WILCO PAGE</a><a class="hub-link" href="/events-admin">UPCOMING EVENTS</a><a class="hub-link" href="/partners-admin">PARTNERS &amp; EMPLOYERS</a><a class="hub-link" href="/resources-admin">STUDENT RESOURCES</a><a class="hub-link" href="/resources-admin#alumni">ALUMNI</a><a class="hub-link" href="#articleAdmin">ARTICLES</a><a class="hub-link" href="/page-heroes-admin">PAGE HEROES</a></div></div>    <div class="intro"><h2>Blog posts</h2><p>Publish a new post or update the newest post. Every post is saved. The newest five appear on the Blog page, and the full history is available in the Blog Archive.</p></div>
     <section class="card">
       <h3 class="section-title">Current blog post</h3><p class="section-copy">The newest post is featured on the Home page. Older posts remain below it.</p>
       <div class="grid">
@@ -48,6 +48,11 @@ export default function handler(req, res) {
       <div class="upload-box"><h3>Upload a photo</h3><p class="hint">JPG, PNG, WebP, or GIF, up to 10 MB. Uploading places the photo online; then press Save to show it on the website.</p><div class="upload-row"><input id="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="secondary" id="up" type="button">Upload photo</button></div></div>
       <div class="history"><h3>Saved posts</h3><p class="history-copy">Every post is saved. The newest five appear on the Blog page; older posts remain available in the <a href="/blog-archive.html" target="_blank" rel="noopener noreferrer">Blog Archive ↗</a>.</p><div class="history-list" id="historyList"></div></div><div class="footer-actions"><button class="secondary" id="newPost" type="button">Create new post</button><button class="primary" id="save" type="button">Save changes</button><p id="status" aria-live="polite">Loading current content…</p></div>
     </section>
+    <section class="card" id="articleAdmin" style="margin-top:24px">
+<h2>Articles</h2><p class="section-copy">Create and edit full articles for <a href="/articles.html" target="_blank" rel="noopener">the Articles page</a>. Save to publish.</p>
+<div id="articleItems"></div>
+<div class="footer-actions"><button class="secondary" id="addArticle" type="button">Add Article</button><button class="primary" id="saveArticles" type="button" disabled>Save Articles</button><p id="articleStatus" aria-live="polite">Loading…</p></div>
+</section>
   </main>
   <script type="module">
     import { upload } from "https://esm.sh/@vercel/blob@2.0.0/client";
@@ -153,6 +158,23 @@ export default function handler(req, res) {
     });
     loadContent();
   </script>
+  <script type="module">
+import { upload } from "https://esm.sh/@vercel/blob@2.0.0/client";
+const items=document.getElementById("articleItems"),status=document.getElementById("articleStatus"),save=document.getElementById("saveArticles");let sha="";
+function message(m){status.textContent=m}
+function add(a={}){
+ const box=document.createElement("div");box.className="upload-box";box.dataset.id=a.id||"";
+ box.innerHTML='<div class="grid"><div class="field wide"><label>Article title</label><input class="article-title"></div><div class="field"><label>Author</label><input class="article-author"></div><div class="field"><label>Publication date</label><input class="article-date" type="date"></div><div class="field wide"><label>Short summary</label><textarea class="article-summary" style="min-height:75px"></textarea></div><div class="field wide"><label>Full article</label><textarea class="article-body" style="min-height:260px"></textarea></div><div class="field wide"><label>Cover photo URL</label><input class="article-image" type="url"><label>Or upload cover photo</label><input class="article-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><div class="upload-row"><button class="secondary article-upload" type="button">Upload Photo</button><button class="danger article-remove" type="button">Delete Article</button></div></div></div>';
+ for(const key of ["title","author","date","summary","body","image"])box.querySelector(".article-"+key).value=a[key]||"";
+ box.querySelector(".article-remove").onclick=()=>{if(confirm("Remove this article? Click Save Articles to publish the removal."))box.remove()};
+ box.querySelector(".article-upload").onclick=async()=>{const file=box.querySelector(".article-file").files[0];if(!file)return message("Choose a photo first.");if(file.size>10*1024*1024)return message("Photo must be under 10 MB.");try{message("Uploading photo…");const b=await upload("uploads/article-"+Date.now()+"-"+file.name,file,{access:"public",handleUploadUrl:"/api/upload"});box.querySelector(".article-image").value=b.url;message("Photo uploaded. Save Articles to publish.")}catch(e){message("Upload error: "+e.message)}};
+ items.append(box)
+}
+document.getElementById("addArticle").onclick=()=>add({date:new Date().toISOString().slice(0,10)});
+async function load(){try{const r=await fetch("/api/update-content",{cache:"no-store"});if(!r.ok)throw Error("Unable to load articles");const c=await r.json();sha=c.__sha||"";(Array.isArray(c.articles)?c.articles:[]).forEach(add);save.disabled=false;message("Articles loaded.")}catch(e){message("Error: "+e.message)}}
+save.onclick=async()=>{const articles=[...items.children].map(b=>{const a={id:b.dataset.id};for(const key of ["title","author","date","summary","body","image"])a[key]=b.querySelector(".article-"+key).value.trim();return a}).filter(a=>a.title);save.disabled=true;try{message("Saving…");const r=await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sha,articles})});const x=await r.json().catch(()=>({}));if(!r.ok)throw Error(x.error||"Could not save");sha=x.sha||sha;message("Articles saved. Vercel will publish the update.")}catch(e){message("Save error: "+e.message)}finally{save.disabled=false}};
+load();
+</script>
 </body>
 </html>`);
 }
