@@ -17,19 +17,19 @@
   },
   "blog": {
     "eyebrow": "WILCO WELDING NEWS",
-    "title": "OPEN HOUSE NEWS LETTER",
-    "description": "This year marked Wilco's 50th Anniversary. To commemorate this achievement we had an Open House, and it was a wonderful day for students, families, and the community. Parents and future students had the opportunity to see what students will learn throughout the school year. Students from every department shared their experiences, highlighting what they have learned during their time at Wilco and answering questions about their programs.\nIn the Welding Department, parents and prospective students explored the welding labs, viewed the equipment, safety gear, and received a sneak peek of SMAW (Stick) and GTAW (TIG) welding processes. Visitors also had the chance to tour both the middle and large welding labs.\nAcross all departments, parents were introduced to the curriculum and skills that current students are developing. Students gave guided tours of their classrooms, demonstrated the tools and equipment they use, explained class projects, and answered questions, providing families with a better understanding of the opportunities available at Wilco.",
+    "title": "Tig Workshop/Stick Welding Comp  NEWS LETTER",
+    "description": "GTAW workshop:\nThe GTAW workshop provided a valuable learning opportunity for those in attendance. The first-year students gained early exposure to GTAW welding, helping prepare them for future classwork and more advanced welding techniques. In addition, the second-year students had the opportunity to strengthen their leadership and communication skills by teaching others. The AWS JAK Student Chapter was proud to provide this opportunity to encourage skill development, teamwork, and knowledge-sharing within the welding program.\n\nSMAW competition: \nThe Stick Welding Competition was a major success, giving first-year welding students the opportunity to learn directly from second-year students and improve their welding skills in a hands-on environment. Throughout the event, second-year students shared their knowledge and experience by teaching proper welding techniques, offering helpful tips and tricks, and explaining common mistakes to avoid. This allowed the first-year students to gain a better understanding of stick welding while learning from students who had already developed experience with the process.\n\nAfter the demonstrations and instruction, students had the opportunity to put what they learned into practice. They worked on both single-pass and multi-pass welds using E6010 electrodes on a T-joint. This gave them a chance to apply proper technique, work on consistency, and become more comfortable with the welding process. The second-year students were also able to demonstrate their leadership skills by helping guide and encourage the first-years throughout the competition.\n\nAt the end of the night, all participants had the opportunity to present their finished welds and compete for welding gear. Overall, the competition provided a great learning experience while bringing students together through teamwork, mentorship, and friendly competition. It was a great opportunity for first-year students to build confidence, for second-year students to share their knowledge, and for everyone involved to develop a stronger connection within the welding program.",
     "button": "READ MORE",
-    "image": "",
+    "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/IMG_6540-VepTqqFKy8RTUSO8jOS5Vg1wCY9NXr.JPG",
     "link": "#",
     "posts": [
       {
-        "id": "post-open-house-news-letter-0",
+        "id": "post-tig-workshop-stick-welding-comp-news-let-0",
         "eyebrow": "WILCO WELDING NEWS",
-        "title": "OPEN HOUSE NEWS LETTER",
-        "description": "This year marked Wilco's 50th Anniversary. To commemorate this achievement we had an Open House, and it was a wonderful day for students, families, and the community. Parents and future students had the opportunity to see what students will learn throughout the school year. Students from every department shared their experiences, highlighting what they have learned during their time at Wilco and answering questions about their programs.\nIn the Welding Department, parents and prospective students explored the welding labs, viewed the equipment, safety gear, and received a sneak peek of SMAW (Stick) and GTAW (TIG) welding processes. Visitors also had the chance to tour both the middle and large welding labs.\nAcross all departments, parents were introduced to the curriculum and skills that current students are developing. Students gave guided tours of their classrooms, demonstrated the tools and equipment they use, explained class projects, and answered questions, providing families with a better understanding of the opportunities available at Wilco.",
+        "title": "Tig Workshop/Stick Welding Comp  NEWS LETTER",
+        "description": "GTAW workshop:\nThe GTAW workshop provided a valuable learning opportunity for those in attendance. The first-year students gained early exposure to GTAW welding, helping prepare them for future classwork and more advanced welding techniques. In addition, the second-year students had the opportunity to strengthen their leadership and communication skills by teaching others. The AWS JAK Student Chapter was proud to provide this opportunity to encourage skill development, teamwork, and knowledge-sharing within the welding program.\n\nSMAW competition: \nThe Stick Welding Competition was a major success, giving first-year welding students the opportunity to learn directly from second-year students and improve their welding skills in a hands-on environment. Throughout the event, second-year students shared their knowledge and experience by teaching proper welding techniques, offering helpful tips and tricks, and explaining common mistakes to avoid. This allowed the first-year students to gain a better understanding of stick welding while learning from students who had already developed experience with the process.\n\nAfter the demonstrations and instruction, students had the opportunity to put what they learned into practice. They worked on both single-pass and multi-pass welds using E6010 electrodes on a T-joint. This gave them a chance to apply proper technique, work on consistency, and become more comfortable with the welding process. The second-year students were also able to demonstrate their leadership skills by helping guide and encourage the first-years throughout the competition.\n\nAt the end of the night, all participants had the opportunity to present their finished welds and compete for welding gear. Overall, the competition provided a great learning experience while bringing students together through teamwork, mentorship, and friendly competition. It was a great opportunity for first-year students to build confidence, for second-year students to share their knowledge, and for everyone involved to develop a stronger connection within the welding program.",
         "button": "READ MORE",
-        "image": "",
+        "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/IMG_6540-VepTqqFKy8RTUSO8jOS5Vg1wCY9NXr.JPG",
         "eventDate": "",
         "link": "#"
       },
@@ -72,9 +72,19 @@
         "image": "https://vn3nfjbat8iosxmm.public.blob.vercel-storage.com/uploads/Wilco%20front%20door-CEAgZ1Eyg2KB0i7E49lrrdAzp0Ylhb.jpg",
         "eventDate": "2026-09-17",
         "link": "#"
+      },
+      {
+        "id": "post-open-house-news-letter-0",
+        "eyebrow": "WILCO WELDING NEWS",
+        "title": "OPEN HOUSE NEWS LETTER",
+        "description": "This year marked Wilco's 50th Anniversary. To commemorate this achievement we had an Open House, and it was a wonderful day for students, families, and the community. Parents and future students had the opportunity to see what students will learn throughout the school year. Students from every department shared their experiences, highlighting what they have learned during their time at Wilco and answering questions about their programs.\nIn the Welding Department, parents and prospective students explored the welding labs, viewed the equipment, safety gear, and received a sneak peek of SMAW (Stick) and GTAW (TIG) welding processes. Visitors also had the chance to tour both the middle and large welding labs.\nAcross all departments, parents were introduced to the curriculum and skills that current students are developing. Students gave guided tours of their classrooms, demonstrated the tools and equipment they use, explained class projects, and answered questions, providing families with a better understanding of the opportunities available at Wilco.",
+        "button": "READ MORE",
+        "image": "",
+        "eventDate": "",
+        "link": "#"
       }
     ],
-    "id": "post-open-house-news-letter-0",
+    "id": "post-tig-workshop-stick-welding-comp-news-let-0",
     "eventDate": ""
   },
   "program": {
