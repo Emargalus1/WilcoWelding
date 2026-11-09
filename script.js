@@ -129,7 +129,7 @@ async function start() {
 
     const blogImage = document.querySelector(".blog-image img");
     const blogContent = document.querySelector(".blog-content");
-    const blogImageUrl = safeUrl(d.blog?.image);
+    const blogImageUrl = safeUrl(d.blog?.image) || blogPosts.map((post) => safeUrl(post?.image)).find(Boolean) || safeUrl(d.hero?.image) || "hero-welding.jpg";
     if (blogImage && blogImageUrl) {
       const setBlogImageLayout = () => blogContent?.classList.toggle("has-portrait-blog", blogImage.naturalHeight > blogImage.naturalWidth);
       blogImage.addEventListener("load", setBlogImageLayout, { once: true });
