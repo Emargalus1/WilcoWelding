@@ -62,11 +62,16 @@ async function start() {
 
     const d = await response.json();
     const blogPosts = Array.isArray(d.blog?.posts) && d.blog.posts.length
-      ? d.blog.posts.slice(0, 5)
+      ? d.blog.posts.slice(0, 3)
       : (d.blog?.title || d.blog?.description || d.blog?.image ? [d.blog] : []);
 
     const blogFeature = document.querySelector(".blog-feature");
     if (blogFeature && blogPosts.length === 0) blogFeature.hidden = true;
+
+    const previewWords = (value, max = 100) => {
+      const words = String(value || "").trim().split(/\s+/).filter(Boolean);
+      return words.length > max ? words.slice(0, max).join(" ") + "…" : words.join(" ");
+    };
 
     document.querySelectorAll("[data-c]").forEach((element) => {
       let value = d;
@@ -81,6 +86,14 @@ async function start() {
         element.textContent = value ?? "";
       }
     });
+
+    const homeBlogDescription = document.querySelector('.blog-text [data-c="blog.description"]');
+    if (homeBlogDescription) homeBlogDescription.textContent = previewWords(d.blog?.description, 100);
+    const homeBlogButton = document.querySelector('.blog-text a[data-c="blog.button"]');
+    if (homeBlogButton && d.blog?.id) {
+      homeBlogButton.textContent = "FULL BLOG →";
+      homeBlogButton.href = "article.html?id=" + encodeURIComponent(d.blog.id);
+    }
 
     const heroPhoto = document.querySelector(".hero-photo");
     const heroForeground = document.querySelector(".hero-photo-foreground");
@@ -161,7 +174,7 @@ async function start() {
         const title = document.createElement("h3");
         title.textContent = post.title || "Untitled post";
         const description = document.createElement("p");
-        description.textContent = post.description || "";
+        description.textContent = previewWords(post.description, 100);
         text.append(eyebrow, title, description);
         card.appendChild(text);
         blogHistoryGrid.appendChild(card);
