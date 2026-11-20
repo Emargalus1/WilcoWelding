@@ -35,7 +35,7 @@ export default function handler(req, res) {
 <body>
   <header class="topbar"><div class="topbar-inner"><div class="mark">W</div><div><h1>Wilco Welding Admin</h1><p>Publish new posts and keep your complete blog history.</p></div></div></header>
   <main>
-    <div class="intro"><h2>Admin Hub</h2><p>Choose the part of the website you want to update.</p><div class="admin-hub"><a class="hub-link active-hub" href="/admin">BLOG POSTS</a><a class="hub-link" href="/hero-admin">HOME HERO</a><a class="hub-link" href="/aws-admin">AWS PAGE</a><a class="hub-link" href="/wilco-admin">WILCO PAGE</a><a class="hub-link" href="/events-admin">UPCOMING EVENTS</a><a class="hub-link" href="/partners-admin">PARTNERS &amp; EMPLOYERS</a><a class="hub-link" href="/resources-admin">STUDENT RESOURCES</a><a class="hub-link" href="/resources-admin#alumni">ALUMNI</a><a class="hub-link" href="#articleAdmin">ARTICLES</a><a class="hub-link" href="/page-heroes-admin">PAGE HEROES</a></div></div>    <div class="intro"><h2>Blog posts</h2><p>Publish a new post or update the newest post. Every post is saved. The newest five appear on the Blog page, and the full history is available in the Blog Archive.</p></div>
+    <div class="intro"><h2>Admin Hub</h2><p>Choose the part of the website you want to update.</p><div class="admin-hub"><a class="hub-link active-hub" href="/admin">BLOG POSTS</a><a class="hub-link" href="/hero-admin">HOME HERO</a><a class="hub-link" href="/aws-admin">AWS PAGE</a><a class="hub-link" href="/wilco-admin">WILCO PAGE</a><a class="hub-link" href="/events-admin">UPCOMING EVENTS</a><a class="hub-link" href="/partners-admin">PARTNERS &amp; EMPLOYERS</a><a class="hub-link" href="/resources-admin">STUDENT RESOURCES</a><a class="hub-link" href="/resources-admin#alumni">ALUMNI</a><a class="hub-link" href="#articleAdmin">ARTICLES</a><a class="hub-link" href="/page-heroes-admin">PAGE HEROES</a></div></div>    <div class="intro"><h2>Blog posts</h2><p>Publish a new post or update the newest post. Every post is saved. The newest three appear on the Blog page, and the full history is available in the Blog Archive.</p></div>
     <section class="card">
       <h3 class="section-title">Current blog post</h3><p class="section-copy">The newest post is featured on the Home page. Older posts remain below it.</p>
       <div class="grid">
@@ -46,7 +46,7 @@ export default function handler(req, res) {
         <div class="field wide"><label for="image">Photo web address</label><input id="image" type="url" placeholder="This fills in after a photo upload."><p class="hint">You can paste an image address, or upload a photo below.</p></div><div class="field"><label for="eventDate">Event date (optional)</label><input id="eventDate" type="date"><p class="hint">Add a date to automatically include this post in Upcoming Events.</p></div>
       </div>
       <div class="upload-box"><h3>Upload a photo</h3><p class="hint">JPG, PNG, WebP, or GIF, up to 10 MB. Uploading places the photo online; then press Save to show it on the website.</p><div class="upload-row"><input id="file" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><button class="secondary" id="up" type="button">Upload photo</button></div></div>
-      <div class="history"><h3>Saved posts</h3><p class="history-copy">Every post is saved. The newest five appear on the Blog page; older posts remain available in the <a href="/blog-archive.html" target="_blank" rel="noopener noreferrer">Blog Archive ↗</a>.</p><div class="history-list" id="historyList"></div></div><div class="footer-actions"><button class="secondary" id="newPost" type="button">Create new post</button><button class="primary" id="save" type="button">Save changes</button><p id="status" aria-live="polite">Loading current content…</p></div>
+      <div class="history"><h3>Saved posts</h3><p class="history-copy">Every post is saved. The newest three appear on the Blog page; older posts remain available in the <a href="/blog-archive.html" target="_blank" rel="noopener noreferrer">Blog Archive ↗</a>.</p><div class="history-list" id="historyList"></div></div><div class="footer-actions"><button class="secondary" id="newPost" type="button">Create new post</button><button class="primary" id="save" type="button">Save changes</button><p id="status" aria-live="polite">Loading current content…</p></div>
     </section>
     <section class="card" id="articleAdmin" style="margin-top:24px">
 <h2>Articles</h2><p class="section-copy">Create and edit full articles for <a href="/articles.html" target="_blank" rel="noopener">the Articles page</a>. Save to publish.</p>
@@ -133,10 +133,11 @@ export default function handler(req, res) {
       if (file.size > 10 * 1024 * 1024) return setStatus("That photo is larger than 10 MB.","error");
       const button = get("up"); button.disabled = true; setStatus("Uploading photo…");
       try {
-        const blob = await upload("uploads/" + file.name,file,{access:"public",handleUploadUrl:"/api/upload"});
+        const safeName=file.name.replace(/[^A-Za-z0-9._-]+/g,"-");
+        const blob = await upload("uploads/blog-"+Date.now()+"-"+safeName,file,{access:"public",handleUploadUrl:"/api/upload"});
         get("image").value = blob.url;
         setStatus("Photo uploaded. Press Save changes to publish it.","success");
-      } catch (error) { setStatus("Upload error: " + error.message,"error"); }
+      } catch (error) { setStatus("Upload error: " + (error?.message || "Could not upload the photo. Reload the Admin page and try again."),"error"); }
       finally { button.disabled = false; }
     });
     get("save").addEventListener("click",async () => {
@@ -150,7 +151,19 @@ export default function handler(req, res) {
         const response = await fetch("/api/update-content",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sha:window.__contentSha,blog:nextBlog,blogPosts:nextPosts})});
         const result = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(result.error || "Could not save your changes.");
+        window.__contentSha=result.sha||window.__contentSha;
         blog=nextBlog; blogPosts=nextPosts; creatingNew = false;
+        try {
+          const refreshed=await fetch("/api/update-content",{cache:"no-store"});
+          if(refreshed.ok){
+            const current=await refreshed.json();
+            window.__contentSha=current.__sha||window.__contentSha;
+            const savedBlog=current.blog||{};
+            blogPosts=Array.isArray(savedBlog.posts)&&savedBlog.posts.length?savedBlog.posts:[savedBlog];
+            blog=blogPosts[0]||nextBlog;
+            fillForm(blog);
+          }
+        } catch {}
         renderHistory();
         setStatus("Saved to GitHub. Vercel is deploying the change.","success");
       } catch (error) { setStatus("Save error: " + error.message,"error"); }
